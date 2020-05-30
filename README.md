@@ -1,2 +1,3 @@
-# ITESM-TC1030.2
-Programación Orientada a Objetos - Tec de Monterrey
+## ITESM-TC1030.2
+
+*Programación Orientada a Objetos - Tec de Monterrey - __A01769410__*
