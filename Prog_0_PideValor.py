@@ -23,7 +23,7 @@ class PideValor():
     def pide_str(self):
         while True:
             string = input(self.message)
-            if (self.lim_in==0) and (self.lim_sup==0)
+            if (self.lim_in==0) and (self.lim_sup==0):
                 return string
             else:
                 if len(string)<self.lim_in or len(string)>self.lim_sup:
@@ -48,10 +48,10 @@ class PideValor():
                     if (self.lim_in==0) and (self.lim_sup==0):
                         return num
                     else:
-                        if numero<self.lim_in or numero>lim_sup:
+                        if numero<self.lim_in or numero>self.lim_sup:
                             no_way="El valor debe estar entre"+str(self.lim_in)+"y"+str(self.lim_sup)+"(ERR_03)"
                             eo=PideValor(no_way)
-                            oe.error_string()
+                            eo.error_string()
                             del eo
                         else:
                             return numero
