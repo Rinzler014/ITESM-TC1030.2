@@ -1,5 +1,5 @@
 ## ITESM-TC1030.2
 
-*Programación Orientada a Objetos - Tec de Monterrey - __A01769410__*
+*Programación Orientada a Objetos - Tec de Monterrey - __Actividades de Clase__*
 
 **Ricardo Adolfo Gonzalez Teran**
