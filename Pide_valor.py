@@ -6,7 +6,6 @@
 
 #----CLASES----
 
-
 class CSV():
 
     def leer(self):
@@ -26,7 +25,7 @@ class CSV():
     
     
     def crear(self):
-        print("Indique como se llamara su csv")
+        print("Indique el nombre de su csv")
         name_file=str(input("->"))
         file_=open(name_file+".csv","w+")
         file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
@@ -50,63 +49,50 @@ class CSV():
         _file_.close()
 
 
-
-        
-        
-
-
-
 class PideValor():
 
     def __init__(self, lim_in="", lim_sup="", tipo=""):
         self.lim_in     = lim_in
         self.lim_sup    = lim_sup
         self.tipo       = tipo
-
+        
     def tomar_datos(self):
+        
+        while 1:
 
-        datos_contenido=["¿Cual es el ID del video ?","¿Cual es el titulo ?","¿Cual es su duración?","¿Cual es la Calicación?","¿Cual es la audiencia?","¿Cual es el genero?","¿Cual es la temporada?","¿Qué episodio es?","¿Título del episodio?", "¿Atributos del tema?" ]
+            datos_contenido=["¿Cual es el ID del video ?","¿Cual es el titulo ?","¿Cual es su duración?","¿Cual es la Calicación?","¿Cual es la audiencia?","¿Cual es el genero?","¿Cual es la temporada?","¿Qué episodio es?","¿Título del episodio?", "¿Atributos del tema?" ]
 
-        datos = []
-           
-        print(datos_contenido[0])
-        id=str(input("->"))
-        ap=id[1]
-        ap=ap.lower()
+            datos = []
+            
+            print(datos_contenido[0])
+            id=str(input("->"))
+            ap=id[1]
+            ap=ap.upper()
 
-        datos.append(id)
+            datos.append(id)
 
-        if ap=="p":
-            for i in range(1,6):
-                print(datos_contenido[i])
-                x=input("->")
-                datos.append(x)
-            datos.append(",,,")
-           
+            if ap == "P":
+                for i in range(1,6):
+                    print(datos_contenido[i])
+                    x=input("->")
+                    datos.append(x)
+                datos.append(",,,")
+                return datos
+                            
+            elif ap == "S":
+                for i in range(1,9):
+                    print(datos_contenido[i])
+                    x=input("->")
+                    datos.append(x)
+                datos.append(",")
+                return datos
 
-        elif ap=="s":
-            for i in range(1,9):
-                print(datos_contenido[i])
-                x=input("->")
-                datos.append(x)
-            datos.append(",")
+            elif ap == "D":
+                for i in range(1,10):
+                    print(datos_contenido[i])
+                    x=input("->")
+                    datos.append(x)
+                return datos
 
-        elif ap=="d":
-            for i in range(1,10):
-                print(datos_contenido[i])
-                x=input("->")
-                datos.append(x)
-        else:
-            print("Numero de opcion invalida (ERR_002)")
-           
-        return datos
-
-
-
-    
-
-
-
-
-
-
+            else:
+                print("No se pudo determinar el tipo de contenido")

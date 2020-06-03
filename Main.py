@@ -1,42 +1,61 @@
-from    Proyecto_Integrador import*
+#Instituto Tecnologico de Estudios Superiores de Monterrey
+#Ricardo Adolfo González Terán
+#A01769410
+#Actvidad en este programa: Main del Proyecto integrador
+
+#----MAIN----
+
+from Proyecto_Integrador import *
+
+menu=Menu()
+menu.pre_menu()
+option = Validaciones("","","",2)
+option = option.validar_opcion_menu()
+
+if option == 1:
+    archive = CSV()
+    archive = archive.leer()
+
+elif option == 2:
+    archive = CSV()
+    archive = archive.crear()
 
 
-if __name__ == "__main__":
-    menu=Menu()
-    menu.despliegue()
-    opcion=Menu()
-    opc=opcion.validar_opcion_menu()
-    while 1:
+while 1:
 
-        if opc == 1:
-            print("Opcion 1 seleccionada")
-             
+    menu=Menu(10)
+    menu.menu_principal()
+    option = Validaciones("","","",10)
+    option = option.validar_opcion_menu()
 
 
-        elif opc == 2:
-             print("Opcion 2 seleccionada")
+    if option == 1:
+        pass
 
-        elif opc== 3:
-             print("Opcion 3 seleccionada")
+    elif option == 2:
+        pass
 
-        elif opc == 4:
-             print("Opcion 4 seleccionada")
+    elif option == 3:
+        pass
 
-        elif opc == 5:
-             print("Opcion 5 seleccionada")
+    elif option == 4:
+        pass 
 
-        elif opc == 6:
-             print("Opcion 6 seleccionada")
+    elif option == 5:
+        pass
 
-        elif opc == 7:
-             print("Opcion 7 seleccionada")
+    elif option == 6:
+        pass
 
-        elif opc == 8:
-             print("Opcion 8 seleccionada")
+    elif option == 7:
+        pass
 
-        elif opc == 9:
-             print("Opcion 9 seleccionada")
+    elif option == 8:
+        pass
 
-        elif opc ==10:
-            print("EXIT REQUESTED BY USER...//")
-            break
+    elif option == 9:
+        pass
+
+    elif option ==10:
+        print("EXIT REQUESTED BY USER...//")
+        break
