@@ -1,7 +1,38 @@
+#Instituto Tecnologico de Estudios Superiores de Monterrey
+#Ricardo Adolfo González Terán
+#A01769410
+#Actvidad en este programa: Proyecto Integrador
+
+#----IMPORTS---
+
+from Pide_valor import PideValor
+
+#----CLASES----
+
 class Menu():
     def despliegue(self):
-        print("Escoja  1.- aGRE ")
-        op=int(input("->"))
+        print("-"*32)
+        print("-"*8+" Menu Principal "+"-"*8)
+        print("-"*32)
+        print("-"*1+" Seleccione la opcion Deseada "+"-"*1)
+        print("-"*32)
+        print("1. Añadir Video")
+        print("2. Buscar Video por Identificador")
+        print("-"*32)
+        print("-"*10+" Logistica "+"-"*11)
+        print("-"*32)
+        print("3. Consultar video por titulo")
+        print("4. Consultar video por genero")
+        print("5. Listado General")
+        print("6. Listado de Peliculas")
+        print("7. Listado de Series")
+        print("8. Listado de Documentales")
+        print("9. Listado por calificaciones")
+        print("10. Salir")
+        print("-"*32)
+        option = PideValor()
+        option.tomar_datos()
+        print("-"*32)
         
 
 class Videos():
@@ -17,6 +48,7 @@ class Videos():
         pass
 
 
+<<<<<<< Updated upstream
 class Peliculas (Videos):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero):
         super().__init__(ID,Titulo,Duracion,Calificacion)
@@ -60,3 +92,15 @@ class Documental (Serie):
     def muestra_datos(self):
         super().muestra_datos()
         print("El tema del documental es: ", self.Tema)
+=======
+menu=Menu()
+menu.despliegue()
+
+
+
+
+
+
+#----MAIN----
+
+>>>>>>> Stashed changes
