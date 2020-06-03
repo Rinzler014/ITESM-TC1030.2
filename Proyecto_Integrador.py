@@ -30,19 +30,22 @@ class Menu():
         print("9. Listado por calificaciones")
         print("10. Salir")
         print("-"*32)
+        option = PideValor()
+        option.tomar_datos()
+        print("-"*32)
         
 
 class Videos():
     def __init__(self,ID,Titulo,Duracion,Calificacion):
-        self.ID             = ID
-        self.Titulo         = Titulo
-        self.Duracion       = Duracion
-        self.Calificacion   = Calificacion      
+        self.ID=ID
+        self.Titulo=Titulo
+        self.Duracion=Duracion
+        self.Calificacion=Calificacion      
     def pide_datos(self):
         pass
+
     def muestra_datos(self):
         pass
-
 
 class Peliculas (Videos):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero):
@@ -58,7 +61,6 @@ class Peliculas (Videos):
         super().muestra_datos()
         print("La audiencia para esta serie es: ",self.Audiencia)
         print("La genero para esta serie es: ",self.Genero)
-
 
 class Serie (Peliculas):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio):
@@ -93,57 +95,4 @@ class Documental (Serie):
 
 menu=Menu()
 menu.despliegue()
-option = PideValor()
-option = option.validar_opcion_menu()
-print("-"*32)
 
-'''
-
-if opcion == 1:  
-                        print(datos_contenido[0])
-                        id=str(input("->"))
-                        ap=id[1]
-                        ap=ap.lower()
-                
-                        datos.append(id)
-
-                        if ap=="p":
-                            for i in range(1,6):
-                                print(datos_contenido[i])
-                                x=input("->")
-                                datos.append(x)
-
-                        elif ap=="s":
-                            for i in range(1,9):
-                                print(datos_contenido[i])
-                                x=input("->")
-                                datos.append(x)
-
-                        elif ap=="d":
-                            for i in range(1,10):
-                                print(datos_contenido[i])
-                                x=input("->")
-                                datos.append(x)
-
-                    elif opcion == 2:
-                        pass
-                        
-                    elif opcion == 3:
-                        pass
-
-                    elif opcion == 4:
-                        pass        
-
-                    elif opcion == 5:
-                        pass
-
-                    elif opcion == 6:
-                        pass
-
-                    elif opcion == 7:
-                        pass
-                        
-                    else:
-                        print("Numero de opcion invalida (ERR_002)")
-                        break
-'''
