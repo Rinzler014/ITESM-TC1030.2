@@ -6,7 +6,7 @@
 
 #----IMPORTS---
 
-from Pide_valor import PideValor
+from Pide_valor import *
 
 #----CLASES----
 
@@ -31,7 +31,79 @@ class Menu():
         print("9. Listado por calificaciones")
         print("10. Salir")
         print("-"*32)
+    
+    
+
+
+class validador ():
+    def __init__(self, lim_in="", lim_sup="", tipo=""):
+        self.lim_in     = lim_in
+        self.lim_sup    = lim_sup
+        self.tipo       = tipo
+
+    def validar_string(self):
+            #Si se usa este metodo usar la siguiente nomenclatura:
+            #nombre_objeto=PideValor(limite_inferior,limite_superior)
+            #nombre_objeto.validar_string
+
+        while 1:
+            string = input("-->")
+            if string.isalpha():
+                while 1:
+                    string = str(string)
+                    if len(string)<self.lim_in or len(string)>self.lim_sup:
+                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
+                        break
+                    else:
+                        return string
+            
+            else:
+                print("La cadena contiene valores numericos (ERRx003)")
+    
+    def validar_numero(self):
+
         
+        #Si se usa este metodo usar la siguiente nomenclatura:
+        #nombre_objeto=PideValor(limite_inferior,limite_superior,tipo(solo "int", de lo contrario dejar en blanco))
+        #nombre_objeto.validar_numero
+
+        while 1:
+            integer = input("-->")
+            if integer.isdigit():
+                while 1:
+                    if self.tipo == "int":
+                        integer = int(integer)
+                    else:
+                        integer = float(integer)
+                    if len(str(integer))<self.lim_in or len(str(integer))>self.lim_sup:
+                        print("El valor numerico debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx002)")
+                        break
+                    else:
+                        return int(integer)
+            else:
+                print("Los valores contienen caracteres no numericos (ERRx004)")
+
+    def validar_opcion_menu(self):
+            
+        while 1:
+
+            opcion = input("->")
+
+            try:
+
+                while 1:     
+                    opcion = int(opcion)
+                    if opcion <=10:  
+                        return   opcion
+                        
+                    else:
+                        print("Numero de opción no valida (ERRx002)")
+                        break
+            
+            except ValueError:
+                print("La opcion seleccionada no es un numero (ERRx001)")
+            
+    
 
 class Videos():
     def __init__(self,ID,Titulo,Duracion,Calificacion):
@@ -40,7 +112,8 @@ class Videos():
         self.Duracion=Duracion
         self.Calificacion=Calificacion      
     def pide_datos(self):
-        pass
+        meto_ext=PideValor()
+        a=meto_ext.tomar_datos()
 
     def muestra_datos(self):
         pass
@@ -92,42 +165,3 @@ class Documental (Serie):
 #----MAIN----
 
 #Despliegue y Funcionamiento del Menu
-
-while 1:
-
-    menu=Menu()
-    menu.despliegue()
-    option = PideValor()
-    option = option.validar_opcion_menu()
-
-    if option == 1:
-        print("Opcion 1 seleccionada")
-
-    elif option == 2:
-        pass
-
-    elif option == 3:
-        pass
-
-    elif option == 4:
-        pass 
-
-    elif option == 5:
-        pass
-
-    elif option == 6:
-        pass
-
-    elif option == 7:
-        pass
-
-    elif option == 8:
-        pass
-
-    elif option == 9:
-        pass
-
-    elif option ==10:
-        print("EXIT REQUESTED BY USER...//")
-        break
-
