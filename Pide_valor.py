@@ -1,5 +1,5 @@
 
-from proyecto import *
+#from proyecto import *
 
 class PideValor():
         
@@ -73,7 +73,6 @@ class PideValor():
             except ValueError:
                 print("La opcion seleccionada no es un numero (ERR_001)")
             
-            return datos_contenido
             
         
 
@@ -82,7 +81,6 @@ if __name__ == "__main__":
     yo=PideValor()
     a=yo.tomar_datos()
     print(a)
-        
 
 
 
