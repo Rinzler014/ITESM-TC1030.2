@@ -1,5 +1,5 @@
 
-#from proyecto import *
+from proyecto import *
 
 class PideValor():
         
