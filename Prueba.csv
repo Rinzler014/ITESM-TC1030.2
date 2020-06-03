@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 ID,Titulo,Duración,Calificación,Audiencia,Genero,Temporada,Episodio,Titulo del episodio,Tema
 0S023,The office,Comedia ,42,8,Jovenes adultos,9,3,locos,
 AP32d,La cosa,100,9,Jovenes,Suspenso,,,,,
 AdD32,Muerte,42,7,Adultos,suspenso,3,2,Yo,no,,
 Asdew,Bb,42,10,cOLL,suspenso,3,3,Mosca,,,,
+=======
+ID,Titulo,Duración,Calificación,Audiencia,Genero,Temporada,Episodio,Titulo del episodio,Tema
+0S023,The office,Comedia ,42,8,Jovenes adultos,9,3,locos,
+AP32d,La cosa,100,9,Jovenes,Suspenso,,,,,
+AdD32,Muerte,42,7,Adultos,suspenso,3,2,Yo,no,,
+Asdew,Bb,42,10,cOLL,suspenso,3,3,Mosca,,,,
+>>>>>>> ProyectoFinal
 ap32d,HER,160,10,Jovenes,Trajedia,,,,,
