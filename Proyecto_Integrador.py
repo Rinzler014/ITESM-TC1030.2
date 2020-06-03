@@ -30,7 +30,6 @@ class Menu():
         print("9. Listado por calificaciones")
         print("10. Salir")
         print("-"*32)
-        print("-"*32)
         
 
 class Videos():
