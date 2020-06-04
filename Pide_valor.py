@@ -5,7 +5,57 @@
 #Actvidad en este programa: Validacion de Valores y Escritura de Datos
 
 #----CLASES----
-#from Proyecto_Integrador import *
+
+class Validaciones():
+
+    def __init__(self, lim_sup = "", lim_in = "", tipo = "", opciones_menu = ""):
+        self.lim_sup = lim_sup
+        self.lim_in = lim_in
+        self. tipo = tipo
+        self.opciones_menu = opciones_menu
+
+    def validar_string(self, string_):
+            #Si se usa este metodo usar la siguiente nomenclatura:
+            #nombre_objeto=PideValor(limite_inferior,limite_superior)
+            #nombre_objeto.validar_string
+
+        while 1:
+            string = str(string_)
+            if len(string)<self.lim_in or len(string)>self.lim_sup:
+                print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
+                string=input("->")
+                while 1:
+                    if len(string)<self.lim_in or len(string)>self.lim_sup:
+                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
+                        string=input("->")
+                    else:
+                        return string
+            else:
+                return string
+            return string
+
+    def validar_numero(self, integer_):
+
+        #Si se usa este metodo usar la siguiente nomenclatura:
+        #nombre_objeto=PideValor(limite_inferior,limite_superior,tipo(solo "int", de lo contrario dejar en blanco))
+        #nombre_objeto.validar_numero
+
+        while 1:  
+
+            integer = integer_
+            if integer<self.lim_in or integer>self.lim_sup:
+                print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
+                integer = int(input("-->"))
+                while 1:
+                    if integer<self.lim_in or integer>self.lim_sup:
+                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
+                        integer = int(input("-->"))
+                    else:
+                        return integer
+            else:
+                return integer
+            return integer
+
 
 class CSV():
 
@@ -29,7 +79,7 @@ class CSV():
         print("Indique el nombre de su csv")
         name_file=str(input("->"))
         file_=open(name_file+".csv","w+")
-        file_.write("ID"+",Titulo"+",Genero"+",Duración"+",Calificación"+",Audiencia"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
+        file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
         return file_
         
 
@@ -40,7 +90,7 @@ class CSV():
         x=objeto.tomar_datos()
         file_list=file_+x
         _file_=open("Prueba.csv","w+")
-        _file_.write("ID"+",Titulo"+",Genero"+",Duración"+",Calificación"+",Audiencia"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
+        _file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
         for i in range (len (file_list)):
             if file_list[i]=="\n":
 
@@ -48,7 +98,6 @@ class CSV():
             else:
                 _file_.write(file_list[i]+",")
         _file_.close()
-
 
 class PideValor():
 
@@ -83,23 +132,23 @@ class PideValor():
                         validar=Validaciones(30,1)
                         validar.validar_string(x[i])
                     elif x[i]==2:
-                        validar=Validaciones(30,1)
+                        validar=Validaciones(15,1)
                         validar.validar_string(x[i])
                     elif x[i]==3:
-                        validar=Validaciones(30,1)
-                        validar.validar_string(x[i])
+                        validar=Validaciones(500,1)
+                        validar.validar_numero(x[i])
                     elif x[i]==4:
-                        validar=Validaciones(30,1)
-                        validar.validar_string(x[i])
+                        validar=Validaciones(5,1)
+                        validar.validar_numero(x[i])
                     elif x[i]==5:
-                        validar=Validaciones(30,1)
+                        validar=Validaciones(15,1)
                         validar.validar_string(x[i])
                     elif x[i]==6:
-                        validar=Validaciones(30,1)
-                        validar.validar_string(x[i])
+                        validar=Validaciones(500,1)
+                        validar.validar_numero(x[i])
                     elif x[i]==7:
-                        validar=Validaciones(30,1)
-                        validar.validar_string(x[i])
+                        validar=Validaciones(500,1)
+                        validar.validar_numero(x[i])
                     elif x[i]==8:
                         validar=Validaciones(30,1)
                         validar.validar_string(x[i])
@@ -107,24 +156,19 @@ class PideValor():
                         validar=Validaciones(30,1)
                         validar.validar_string(x[i])
 
-                    
-                    
-
                 datos.append(",,,")
                 
                 return datos
                             
-            elif ap == "S":
-                
+            elif ap == "s":
                 for i in range(1,9):
                     print(datos_contenido[i])
                     x=input("->")
                     datos.append(x)
                 datos.append(",")
                 return datos
-                
 
-            elif ap == "D":
+            elif ap == "d":
                 for i in range(1,10):
                     print(datos_contenido[i])
                     x=input("->")
@@ -133,71 +177,3 @@ class PideValor():
 
             else:
                 print("No se pudo determinar el tipo de contenido")
-        print("s_______")
-class Validaciones():
-
-    def __init__(self, lim_sup = "", lim_in = "", tipo = "", opciones_menu = ""):
-        self.lim_sup = lim_sup
-        self.lim_in = lim_in
-        self. tipo = tipo
-        self.opciones_menu = opciones_menu
-        
-    def validar_opcion_menu(self):
-            
-        while 1:
-            opcion = input("->")
-            try:
-                while 1:     
-                    opcion = int(opcion)
-                    if opcion>=1 and opcion <=self.opciones_menu:  
-                        return   opcion
-                    else:
-                        print("Numero de opción no valida (ERRx002)")
-                        break                          
-            except ValueError:
-                print("La opcion seleccionada no es un numero (ERRx001)")
-
-    def validar_string(self,str_):
-            #Si se usa este metodo usar la siguiente nomenclatura:
-            #nombre_objeto=PideValor(limite_inferior,limite_superior)
-            #nombre_objeto.validar_string
-
-        while 1:
-            string = str(str_)
-            if len(string)<self.lim_in or len(string)>self.lim_sup:
-                print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
-                string=input("->")
-                while 1:
-                    if len(string)<self.lim_in or len(string)>self.lim_sup:
-                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
-                        string=input("->")
-                    else:
-                        return string
-
-                
-            else:
-                return string
-            return string
-
-
-    def validar_numero(self):
-
-        #Si se usa este metodo usar la siguiente nomenclatura:
-        #nombre_objeto=PideValor(limite_inferior,limite_superior,tipo(solo "int", de lo contrario dejar en blanco))
-        #nombre_objeto.validar_numero
-
-        while 1:
-            integer = input("-->")
-            if integer.isdigit():
-                while 1:
-                    if self.tipo == "int":
-                        integer = int(integer)
-                    else:
-                        integer = float(integer)
-                    if len(str(integer))<self.lim_in or len(str(integer))>self.lim_sup:
-                        print("El valor numerico debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx002)")
-                        break
-                    else:
-                        return int(integer)
-            else:
-                print("Los valores contienen caracteres no numericos (ERRx004)")
