@@ -14,7 +14,7 @@ option = option.validar_opcion_menu()
 
 if option == 1:
     archive = CSV()
-    archive = archive.leer()
+    archive_lec = archive.leer()
 
 elif option == 2:
     archive = CSV()
@@ -23,14 +23,32 @@ elif option == 2:
 
 while 1:
 
-    menu=Menu(10)
+    menu=Menu()
     menu.menu_principal()
     option = Validaciones("","","",10)
     option = option.validar_opcion_menu()
 
 
     if option == 1:
-        pass
+        objeto=Videos("","","","")
+        x=objeto.pide_datos()
+        id_=x[0]
+        id_=id_[0]
+        id_=id_.lower()
+        if id_[0]=="p":
+            obj_peli=Peliculas(x[0],x[1],x[2],x[3],x[4],x[5])
+            obj_peli.muestra_datos()
+        elif id_[0]=="s":
+            obj_peli=Serie(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8])
+            obj_peli.muestra_datos()
+        elif id_[0]=="d":
+            obj_peli=Documental(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9])
+            obj_peli.muestra_datos()
+        print("sc")
+        
+
+
+
 
     elif option == 2:
         pass

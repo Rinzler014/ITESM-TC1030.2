@@ -5,6 +5,7 @@
 #Actvidad en este programa: Validacion de Valores y Escritura de Datos
 
 #----CLASES----
+#from Proyecto_Integrador import *
 
 class CSV():
 
@@ -66,7 +67,7 @@ class PideValor():
             
             print(datos_contenido[0])
             id=str(input("->"))
-            ap=id[1]
+            ap=id[0]
             ap=ap.upper()
 
             datos.append(id)
@@ -77,6 +78,7 @@ class PideValor():
                     x=input("->")
                     datos.append(x)
                 datos.append(",,,")
+                
                 return datos
                             
             elif ap == "S":

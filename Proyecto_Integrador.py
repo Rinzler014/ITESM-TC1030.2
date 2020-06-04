@@ -20,6 +20,7 @@ class Menu():
         print("1. Ya cuento con un archivo (el archivo debe de ser .csv)")
         print("2. No tengo archivo (crea uno y agrega videos)")
         print("-"*32)
+    
 
     def menu_principal(self):
         print("-"*32)
@@ -114,10 +115,15 @@ class Videos():
         self.Duracion=Duracion
         self.Calificacion=Calificacion      
     def pide_datos(self):
-        pass
+        metodo_=PideValor()
+        x=metodo_.tomar_datos()
+        return x
 
     def muestra_datos(self):
-        pass
+        print("El ID es: ", self.ID)
+        print("El titulo es: ",self.Titulo)
+        print("la duración es: ",self.Duracion)
+        print("La calificación es: ",self.Calificacion)
 
 class Peliculas (Videos):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero):
@@ -126,7 +132,7 @@ class Peliculas (Videos):
         self.Genero=Genero
      
     def pide_datos(self):
-        pass
+        super().pide_datos()
 
     def muestra_datos(self):
         super().muestra_datos()
@@ -141,7 +147,7 @@ class Serie (Peliculas):
         self.Til_episodio=Til_episodio
 
     def pide_datos(self):
-        pass
+        super().pide_datos()
 
     def muestra_datos(self):
         super().muestra_datos()
@@ -155,7 +161,7 @@ class Documental (Serie):
         self.Tema=Tema
      
     def pide_datos(self):
-        pass
+        super().pide_datos()
 
     def muestra_datos(self):
         super().muestra_datos()
