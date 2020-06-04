@@ -1,6 +1,7 @@
 #Instituto Tecnologico de Estudios Superiores de Monterrey
 #Ricardo Adolfo González Terán
 #A01769410
+#Anatanael Jesus Miranda Faustino
 #Actvidad en este programa: Proyecto Integrador
 
 #----IMPORTS---
@@ -29,9 +30,6 @@ class Menu():
         print("8. Listado de Documentales")
         print("9. Listado por calificaciones")
         print("10. Salir")
-        print("-"*32)
-        option = PideValor()
-        option.tomar_datos()
         print("-"*32)
         
 
@@ -93,6 +91,43 @@ class Documental (Serie):
 
 #----MAIN----
 
-menu=Menu()
-menu.despliegue()
+#Despliegue y Funcionamiento del Menu
+
+while 1:
+
+    menu=Menu()
+    menu.despliegue()
+    option = PideValor()
+    option = option.validar_opcion_menu()
+
+    if option == 1:
+        print("Opcion 1 seleccionada")
+
+    elif option == 2:
+        pass
+
+    elif option == 3:
+        pass
+
+    elif option == 4:
+        pass 
+
+    elif option == 5:
+        pass
+
+    elif option == 6:
+        pass
+
+    elif option == 7:
+        pass
+
+    elif option == 8:
+        pass
+
+    elif option == 9:
+        pass
+
+    elif option ==10:
+        print("EXIT REQUESTED BY USER...//")
+        break
 

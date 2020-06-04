@@ -1,5 +1,10 @@
 
-#from proyecto import *
+#Instituto Tecnologico de Estudios Superiores de Monterrey
+#Ricardo Adolfo González Terán
+#A01769410
+#Actvidad en este programa: Validacion de Valores y Escritura de Datos
+
+#----CLASES----
 
 class CSV():
 
@@ -101,7 +106,7 @@ class PideValor():
 
                 while 1:     
                     opcion = int(opcion)
-                    if opcion <=7:  
+                    if opcion <=10:  
                         return   opcion
                     else:
                         print("Numero de opción no valida (ERRx002)")
@@ -151,12 +156,7 @@ class PideValor():
             else:
                 print("Los valores contienen caracteres no numericos (ERRx004)")
 
+#----MAIN----
 
-if __name__ == "__main__":
-
-    #loco=CSV()
-    #loco.escribir()
-    #yo=PideValor()
-    #a=yo.validar_opcion_menu()
 
 
