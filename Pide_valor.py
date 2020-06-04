@@ -16,7 +16,7 @@ class Validaciones():
 
     def validar_string(self, string_):
             #Si se usa este metodo usar la siguiente nomenclatura:
-            #nombre_objeto=PideValor(limite_inferior,limite_superior)
+            #nombre_dobjeto=PideValor(limite_inferior,limite_superior)
             #nombre_objeto.validar_string
 
         while 1:
@@ -42,13 +42,13 @@ class Validaciones():
 
         while 1:  
 
-            integer = integer_
+            integer =int( integer_)
             if integer<self.lim_in or integer>self.lim_sup:
-                print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
+                print("El valor debe estat entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" valor numerico (INVALx001)")
                 integer = int(input("-->"))
                 while 1:
                     if integer<self.lim_in or integer>self.lim_sup:
-                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
+                        print("El valor debe estat entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" valor numerico(INVALx001)")
                         integer = int(input("-->"))
                     else:
                         return integer
@@ -121,40 +121,46 @@ class PideValor():
             validar_id=Validaciones(5,1)
             ap=validar_id.validar_string(id)
             datos.append(ap)
+            ap=ap.upper()
             ap=ap[0]
 
             if ap == "P":
                 for i in range(1,6):
                     print(datos_contenido[i])
                     x=input("->")
-                    datos.append(x)
-                    if x[i]==1:
+                    
+                    if i==1:
                         validar=Validaciones(30,1)
-                        validar.validar_string(x[i])
-                    elif x[i]==2:
+                        x=validar.validar_string(x)
+                        
+                    elif i==2:
                         validar=Validaciones(15,1)
-                        validar.validar_string(x[i])
-                    elif x[i]==3:
+                        x=validar.validar_string(x)
+                        
+                    elif i==3:
                         validar=Validaciones(500,1)
-                        validar.validar_numero(x[i])
-                    elif x[i]==4:
+                        x=validar.validar_numero(x)
+                       
+                    elif i==4:
                         validar=Validaciones(5,1)
-                        validar.validar_numero(x[i])
-                    elif x[i]==5:
+                        x=validar.validar_numero(x)
+                        
+                    elif i==5:
                         validar=Validaciones(15,1)
-                        validar.validar_string(x[i])
-                    elif x[i]==6:
+                        x=validar.validar_string(x)
+                    elif i==6:
                         validar=Validaciones(500,1)
-                        validar.validar_numero(x[i])
-                    elif x[i]==7:
+                        x=validar.validar_numero(x)
+                    elif i==7:
                         validar=Validaciones(500,1)
-                        validar.validar_numero(x[i])
-                    elif x[i]==8:
+                        x=validar.validar_numero(x)
+                    elif i==8:
                         validar=Validaciones(30,1)
-                        validar.validar_string(x[i])
-                    elif x[i]==9:
+                        x=validar.validar_string(x)
+                    elif i==9:
                         validar=Validaciones(30,1)
-                        validar.validar_string(x[i])
+                        x=validar.validar_string(x)
+                    datos.append(x)
 
                 datos.append(",,,")
                 
