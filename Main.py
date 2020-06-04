@@ -14,11 +14,15 @@ option = option.validar_opcion_menu()
 
 if option == 1:
     archive = CSV()
-    archive = archive.leer()
+    archive_lec = archive.leer()
+
 
 elif option == 2:
     archive = CSV()
-    archive = archive.crear()
+    archive_lec = archive.crear()
+    
+
+ 
 
 
 while 1:
@@ -45,6 +49,9 @@ while 1:
         elif id_[0]=="d":
             obj_peli=Documental(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9])
             obj_peli.muestra_datos()
+        escritura=CSV()
+        escritura.escribir(archive_lec,x)
+
 
     elif option == 2:
         pass

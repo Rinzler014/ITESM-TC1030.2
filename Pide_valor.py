@@ -80,14 +80,15 @@ class CSV():
         name_file=str(input("->"))
         file_=open(name_file+".csv","w+")
         file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
-        return file_
+        file_.close()
+        file_list=[]
+        return file_list
         
 
-    def escribir(self): 
-        file_=self.leer()
+    def escribir(self,lectura,x): 
+        file_=lectura
         file_.append("\n")
-        objeto=PideValor()
-        x=objeto.tomar_datos()
+        x=x
         file_list=file_+x
         _file_=open("Prueba.csv","w+")
         _file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
@@ -160,7 +161,7 @@ class PideValor():
                     elif i==9:
                         validar=Validaciones(30,1)
                         x=validar.validar_string(x)
-                    datos.append(x)
+                    datos.append(str(x))
 
                 datos.append(",,,")
                 
