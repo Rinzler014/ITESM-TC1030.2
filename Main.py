@@ -36,6 +36,7 @@ while 1:
         id_=id_[0]
         id_=id_.lower()
         if id_[0]=="p":
+            
             obj_peli=Peliculas(x[0],x[1],x[2],x[3],x[4],x[5])
             obj_peli.muestra_datos()
         elif id_[0]=="s":
