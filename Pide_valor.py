@@ -6,6 +6,64 @@
 
 #----CLASES----
 
+class Videos():
+    def __init__(self,ID,Titulo,Duracion,Calificacion):
+        self.ID=ID
+        self.Titulo=Titulo
+        self.Duracion=Duracion
+        self.Calificacion=Calificacion      
+    def pide_datos(self):
+        metodo_=PideValor()
+        x=metodo_.tomar_datos()
+        return x
+
+    def muestra_datos(self):
+        print("El ID es: ", self.ID)
+        print("El titulo es: ",self.Titulo)
+        print("la duración es: ",self.Duracion)
+        print("La calificación es: ",self.Calificacion)
+
+class Peliculas (Videos):
+    def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero):
+        super().__init__(ID,Titulo,Duracion,Calificacion)
+        self.Audiencia=Audiencia
+        self.Genero=Genero
+     
+    def pide_datos(self):
+        super().pide_datos()
+
+    def muestra_datos(self):
+        super().muestra_datos()
+        print("La audiencia para esta serie es: ",self.Audiencia)
+        print("La genero para esta serie es: ",self.Genero)
+
+class Serie (Peliculas):
+    def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio):
+        super().__init__(ID,Titulo,Duracion,Calificacion,Audiencia,Genero)
+        self.Temporada=Temporada
+        self.Episodio=Episodio
+        self.Til_episodio=Til_episodio
+
+    def pide_datos(self):
+        super().pide_datos()
+
+    def muestra_datos(self):
+        super().muestra_datos()
+        print("La temporada es: ",self.Temporada)
+        print("El episodio es: ",self.Episodio)
+        print("El tilulo del episodio es: ",self.Til_episodio)
+
+class Documental (Serie):
+    def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio,Tema):
+        super().__init__(ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio)
+        self.Tema=Tema
+     
+    def pide_datos(self):
+        super().pide_datos()
+
+    def muestra_datos(self):
+        super().muestra_datos()
+        print("El tema del documental es: ", self.Tema)
 class Validaciones():
 
     def __init__(self, lim_sup = "", lim_in = "", tipo = "", opciones_menu = ""):
@@ -13,6 +71,21 @@ class Validaciones():
         self.lim_in = lim_in
         self. tipo = tipo
         self.opciones_menu = opciones_menu
+        
+    def validar_opcion_menu(self):
+            
+        while 1:
+            opcion = input("->")
+            try:
+                while 1:     
+                    opcion = int(opcion)
+                    if opcion>=1 and opcion <=self.opciones_menu:  
+                        return   opcion
+                    else:
+                        print("Numero de opción no valida (ERRx002)")
+                        break                          
+            except ValueError:
+                print("La opcion seleccionada no es un numero (ERRx001)")
 
     def validar_string(self, string_):
             #Si se usa este metodo usar la siguiente nomenclatura:
@@ -184,3 +257,55 @@ class PideValor():
 
             else:
                 print("No se pudo determinar el tipo de contenido")
+class Archivadora():
+    def archivar_peliculas(self,_datos_line):
+        lista=_datos_line
+        global peliculas 
+        peliculas={}
+        for line in lista:
+            id = line[0]
+            titulo=line[1]
+            genero=line[2]
+            duración=line[3]
+            Calificaci=line[4]
+            audien=line[5]
+    
+    def archivar_series(self,_datos_line):
+        lista=_datos_line
+        global series
+        series={}
+        for line in lista:
+            id = line[0]
+            titulo=line[1]
+            genero=line[2]
+            duración=line[3]
+            Calificaci=line[4]
+            audien=line[5]
+            temporada=line[6]
+            episodio=line[7]
+            til_epi=line[8]
+            
+    
+    def archivar_documentales(self,_datos_line):
+        lista=_datos_line
+        global archivar_documentales
+        archivar_documentales={}
+        for line in lista:
+            id = line[0]
+            titulo=line[1]
+            genero=line[2]
+            duración=line[3]
+            Calificaci=line[4]
+            audien=line[5]
+            temporada=line[6]
+            episodio=line[7]
+            til_epi=line[8]
+            tema=line[9]
+            #documental=
+            
+            
+
+
+
+
+ 

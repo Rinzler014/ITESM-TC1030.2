@@ -41,127 +41,79 @@ class Menu():
         print("9. Listado por calificaciones")
         print("10. Salir")
         print("-"*32)
+class Eleccion():
+    
+    def inicio_de_menu (self):
+        menu=Menu()
+        menu.pre_menu()
+        option = Validaciones("","","",2)
+        option = option.validar_opcion_menu()
 
-class Validaciones_1():
+        if option == 1:
+            archive = CSV()
+            archive_lec = archive.leer()
 
-    def __init__(self, lim_sup = "", lim_in = "", tipo = "", opciones_menu = ""):
-        self.lim_sup = lim_sup
-        self.lim_in = lim_in
-        self. tipo = tipo
-        self.opciones_menu = opciones_menu
+        elif option == 2:
+            archive = CSV()
+            archive_lec = archive.crear()
+            
+
         
-    def validar_opcion_menu(self):
-            
-        while 1:
-            opcion = input("->")
-            try:
-                while 1:     
-                    opcion = int(opcion)
-                    if opcion>=1 and opcion <=self.opciones_menu:  
-                        return   opcion
-                    else:
-                        print("Numero de opción no valida (ERRx002)")
-                        break                          
-            except ValueError:
-                print("La opcion seleccionada no es un numero (ERRx001)")
 
-    def validar_string(self):
-            #Si se usa este metodo usar la siguiente nomenclatura:
-            #nombre_objeto=PideValor(limite_inferior,limite_superior)
-            #nombre_objeto.validar_string
 
         while 1:
-            string = input("-->")
-            if string.isalnum():
-                while 1:
-                    string = str(string)
-                    if len(string)<self.lim_in or len(string)>self.lim_sup:
-                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
-                        break
-                    else:
-                        return string
-            
-            else:
-                print("La cadena contiene valores numericos (ERRx003)")
 
-    def validar_numero(self):
+            menu=Menu()
+            menu.menu_principal()
+            option = Validaciones("","","",10)
+            option = option.validar_opcion_menu()
 
-        #Si se usa este metodo usar la siguiente nomenclatura:
-        #nombre_objeto=PideValor(limite_inferior,limite_superior,tipo(solo "int", de lo contrario dejar en blanco))
-        #nombre_objeto.validar_numero
 
-        while 1:
-            integer = input("-->")
-            if integer.isdigit():
-                while 1:
-                    if self.tipo == "int":
-                        integer = int(integer)
-                    else:
-                        integer = float(integer)
-                    if len(str(integer))<self.lim_in or len(str(integer))>self.lim_sup:
-                        print("El valor numerico debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx002)")
-                        break
-                    else:
-                        return int(integer)
-            else:
-                print("Los valores contienen caracteres no numericos (ERRx004)")
+            if option == 1:
+                
+                objeto=Videos("","","","")
+                x=objeto.pide_datos()
+                id_=x[0]
+                id_=id_[0]
+                id_=id_.lower()
+                if id_[0]=="p":
+                    obj_peli=Peliculas(x[0],x[1],x[2],x[3],x[4],x[5])
+                    obj_peli.muestra_datos()
+                elif id_[0]=="s":
+                    obj_peli=Serie(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8])
+                    obj_peli.muestra_datos()
+                elif id_[0]=="d":
+                    obj_peli=Documental(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9])
+                    obj_peli.muestra_datos()
+                escritura=CSV()
+                escritura.escribir(archive_lec,x)
 
-class Videos():
-    def __init__(self,ID,Titulo,Duracion,Calificacion):
-        self.ID=ID
-        self.Titulo=Titulo
-        self.Duracion=Duracion
-        self.Calificacion=Calificacion      
-    def pide_datos(self):
-        metodo_=PideValor()
-        x=metodo_.tomar_datos()
-        return x
 
-    def muestra_datos(self):
-        print("El ID es: ", self.ID)
-        print("El titulo es: ",self.Titulo)
-        print("la duración es: ",self.Duracion)
-        print("La calificación es: ",self.Calificacion)
+            elif option == 2:
+                pass
 
-class Peliculas (Videos):
-    def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero):
-        super().__init__(ID,Titulo,Duracion,Calificacion)
-        self.Audiencia=Audiencia
-        self.Genero=Genero
-     
-    def pide_datos(self):
-        super().pide_datos()
+            elif option == 3:
+                pass
 
-    def muestra_datos(self):
-        super().muestra_datos()
-        print("La audiencia para esta serie es: ",self.Audiencia)
-        print("La genero para esta serie es: ",self.Genero)
+            elif option == 4:
+                pass 
 
-class Serie (Peliculas):
-    def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio):
-        super().__init__(ID,Titulo,Duracion,Calificacion,Audiencia,Genero)
-        self.Temporada=Temporada
-        self.Episodio=Episodio
-        self.Til_episodio=Til_episodio
+            elif option == 5:
+                pass
 
-    def pide_datos(self):
-        super().pide_datos()
+            elif option == 6:
+                pass
 
-    def muestra_datos(self):
-        super().muestra_datos()
-        print("La temporada es: ",self.Temporada)
-        print("El episodio es: ",self.Episodio)
-        print("El tilulo del episodio es: ",self.Til_episodio)
+            elif option == 7:
+                pass
 
-class Documental (Serie):
-    def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio,Tema):
-        super().__init__(ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio)
-        self.Tema=Tema
-     
-    def pide_datos(self):
-        super().pide_datos()
+            elif option == 8:
+                pass
 
-    def muestra_datos(self):
-        super().muestra_datos()
-        print("El tema del documental es: ", self.Tema)
+            elif option == 9:
+                pass
+
+            elif option ==10:
+                print("EXIT REQUESTED BY USER...//")
+                break
 
