@@ -42,7 +42,6 @@ class Menu():
         print("10. Salir")
         print("-"*32)
 
-
 class Eleccion():
     
     def inicio_de_menu (self):
@@ -52,7 +51,7 @@ class Eleccion():
         option = option.validar_opcion_menu()
 
         if option == 1:
-            archive_=str(input("Ingrese el nombre de su archivo: "))
+            archive_=str(input("Ingrese el nombre de su archivo: -->"))
 
         elif option == 2:
             archive = CSV()

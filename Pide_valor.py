@@ -65,7 +65,6 @@ class Documental (Serie):
         super().muestra_datos()
         print("El tema del documental es: ", self.Tema)
 
-
 class Validaciones():
 
     def __init__(self, lim_sup = "", lim_in = "", tipo = "", opciones_menu = ""):
@@ -89,48 +88,93 @@ class Validaciones():
             except ValueError:
                 print("La opcion seleccionada no es un numero (ERRx001)")
 
-    def validar_string(self, string_):
-            #Si se usa este metodo usar la siguiente nomenclatura:
-            #nombre_dobjeto=PideValor(limite_inferior,limite_superior)
-            #nombre_objeto.validar_string
+    def validar_string(self, message = ""):
+        
+        #Si se usa este metodo usar la siguiente nomenclatura:
+        #nombre_dobjeto=PideValor(limite_inferior,limite_superior)
+        #nombre_objeto.validar_string
 
         while 1:
-            string = str(string_)
-            if len(string)<self.lim_in or len(string)>self.lim_sup:
-                print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
-                string=input("->")
+            string = input("-->")
+            if string.isalnum():
                 while 1:
+                    string = str(string)
                     if len(string)<self.lim_in or len(string)>self.lim_sup:
                         print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
-                        string=input("->")
+                        print(message)
+                        break
                     else:
                         return string
             else:
-                return string
-            return string
+                print("No se indico ningun valor (ERRx003)")
+                print(message)
 
-    def validar_numero(self, integer_):
+    def validar_numero(self, messsage = ""):
 
         #Si se usa este metodo usar la siguiente nomenclatura:
         #nombre_objeto=PideValor(limite_inferior,limite_superior,tipo(solo "int", de lo contrario dejar en blanco))
         #nombre_objeto.validar_numero
 
-        while 1:  
-
-            integer =int( integer_)
-            if integer<self.lim_in or integer>self.lim_sup:
-                print("El valor debe estat entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" valor numerico (INVALx001)")
-                integer = int(input("-->"))
+        while 1:
+            integer = input("-->")
+            if integer.isdigit():
                 while 1:
-                    if integer<self.lim_in or integer>self.lim_sup:
-                        print("El valor debe estat entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" valor numerico(INVALx001)")
-                        integer = int(input("-->"))
+                    if self.tipo == "int":
+                        integer = int(integer)
                     else:
-                        return integer
+                        integer = int(integer)
+                    if integer<self.lim_in or integer>self.lim_sup:
+                        print("El valor numerico debe estar en el rango de "+str(self.lim_in)+" y "+str(self.lim_sup)+" (INVALx002)")
+                        print(messsage)
+                        break
+                    else:
+                        return int(integer)
             else:
-                return integer
-            return integer
+                print("Los valores contienen caracteres no numericos (ERRx004)")
+                print(messsage)
 
+    def validacion_del_id(self, datos_contenido):
+
+        while 1:
+
+            #Validacion del ID del contenido
+            print(datos_contenido[0])
+            validar_id=Validaciones(1,1)
+            id_contenido=validar_id.validar_string(datos_contenido[0])
+            id_contenido=id_contenido.upper()
+            id_contenido=id_contenido[0]
+            if id_contenido == "P" or id_contenido == "S":
+                break
+            elif id_contenido == "D":
+                break
+            else:
+                print("No se pudo determinar el tipo de contenido\n")
+                
+        while 1:
+
+            #Validacion de la clasificación
+            print(datos_contenido[1])
+            validar_clasif = Validaciones(1,1)
+            clasif_contenido = validar_clasif.validar_string(datos_contenido[1])
+            clasif_contenido = clasif_contenido.upper()
+            clasif_contenido = clasif_contenido[0]
+            if clasif_contenido == "A" or clasif_contenido == "B":
+                break
+            elif clasif_contenido == "C" or clasif_contenido == "D":
+                break
+            else:
+                print("No se pudo determinar la clasificacion del contenido\n")
+
+        #Validacion del numero de contenido
+        print(datos_contenido[2])
+        validar_num_contenido = Validaciones(3,1)
+        num_contenido = str(validar_num_contenido.validar_numero(datos_contenido[2]))
+        num_contenido = num_contenido
+
+        #Escritura del ID completo
+        id_completo = id_contenido+clasif_contenido+num_contenido
+
+        return id_completo
 
 class CSV():
 
@@ -187,84 +231,132 @@ class PideValor():
         
         while 1:
 
-            datos_contenido=["¿Cual es el ID del video ?","¿Cual es el titulo ?","¿Cual es el genero?","¿Cual es su duración?","¿Cual es la Calicación?","¿Cual es la audiencia?","¿Cual es la temporada?","¿Qué episodio es?","¿Título del episodio?", "¿Cual es el tema?" ]
+            datos_contenido=["Ingrese el identificador de contenido (P = Pelicula, S = Serie, D= Documental)","Ingrese la clasificacion del contenido (A = Todo Publico, B = Mayores de 15 años, C = Adultos de 18 años, D = Publico de alto criterio)","Ingrese el numero de contenido (Solo 3 digitos [Ej. 001])","¿Cual es el titulo ?","¿Cual es su duración?","¿Cual es la Calicación?","¿Cual es la audiencia?","¿Cual es el genero?","¿Cual es la temporada?","¿Qué episodio es?","¿Título del episodio?", "¿Cual es el tema?" ]
 
             datos = []
             
-            print(datos_contenido[0])
-            id=str(input("->"))
-            ap=id[0]
-            ap=ap.upper()
-            validar_id=Validaciones(5,1)
-            ap=validar_id.validar_string(id)
-            datos.append(ap)
-            ap=ap.upper()
-            ap=ap[0]
+            val_id = Validaciones()
+            id_completo = val_id.validacion_del_id(datos_contenido)
 
-            if ap == "P":
-                for i in range(1,6):
+            datos.append(id_completo)
+
+            if id_completo[0] == "P":
+                for i in range(3,8):
                     print(datos_contenido[i])
-                    x=input("->")
                     
-                    if i==1:
+                    if i==3:
+                        #Titulo
                         validar=Validaciones(30,1)
-                        x=validar.validar_string(x)
-                        
-                    elif i==2:
-                        validar=Validaciones(15,1)
-                        x=validar.validar_string(x)
-                        
-                    elif i==3:
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero(x))
-                       
+                        x=validar.validar_string()
                     elif i==4:
-                        validar=Validaciones(5,1)
-                        x=str(validar.validar_numero(x))
-                        
+                        #Duracion
+                        validar=Validaciones(500,1)
+                        x=str(validar.validar_numero())
                     elif i==5:
-                        validar=Validaciones(15,1)
-                        x=validar.validar_string(x)
+                        #Calificacion
+                        validar=Validaciones(5,1)
+                        x=str(validar.validar_numero())
                     elif i==6:
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero(x))
-                        
+                        #Audiencia
+                        validar=Validaciones(15,1)
+                        x=validar.validar_string()
                     elif i==7:
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero(x))
-                    elif i==8:
-                        validar=Validaciones(30,1)
-                        x=validar.validar_string(x)
-                    elif i==9:
-                        validar=Validaciones(30,1)
-                        x=validar.validar_string(x)
+                        #Genero
+                        validar=Validaciones(15,1)
+                        x=validar.validar_string()
+
                     datos.append(","+x)
                 datos.append(",,,")
-
-              
-                
                 return datos
                             
-            elif ap == "s":
-                for i in range(1,9):
+            elif id_completo[0] == "S":
+                for i in range(3,11):
                     print(datos_contenido[i])
-                    x=input("->")
-                    datos.append(x)
-               
+
+                    if i==3:
+                        #Titulo
+                        validar=Validaciones(30,1)
+                        x=validar.validar_string()
+                    elif i==4:
+                        #Duracion
+                        validar=Validaciones(500,1)
+                        x=str(validar.validar_numero())
+                    elif i==5:
+                        #Calificacion
+                        validar=Validaciones(5,1)
+                        x=str(validar.validar_numero())
+                    elif i==6:
+                        #Audiencia
+                        validar=Validaciones(15,1)
+                        x=validar.validar_string()
+                    elif i==7:
+                        #Genero
+                        validar=Validaciones(15,1)
+                        x=validar.validar_string()
+                    elif i==8:
+                        #Temporada
+                        validar=Validaciones(500,1)
+                        x=str(validar.validar_numero())
+                    elif i==9:
+                        #Episodio
+                        validar=Validaciones(500,1)
+                        x=str(validar.validar_numero())
+                    elif i==10:
+                        #Titulo del Episodio
+                        validar=Validaciones(30,1)
+                        x=validar.validar_string()
+
+                    datos.append(","+x)
+                datos.append(",")
                 return datos
 
-            elif ap == "d":
-                for i in range(1,10):
+            elif id_completo[0] == "D":
+
+                for i in range(3,12):
                     print(datos_contenido[i])
-                    x=input("->")
-                    datos.append(x)
+
+                    if i==3:
+                        #Titulo
+                        validar=Validaciones(30,1)
+                        x=validar.validar_string()
+                    elif i==4:
+                        #Duracion
+                        validar=Validaciones(500,1)
+                        x=str(validar.validar_numero())
+                    elif i==5:
+                        #Calificacion
+                        validar=Validaciones(5,1)
+                        x=str(validar.validar_numero())
+                    elif i==6:
+                        #Audiencia
+                        validar=Validaciones(15,1)
+                        x=validar.validar_string()
+                    elif i==7:
+                        #Genero
+                        validar=Validaciones(15,1)
+                        x=validar.validar_string()
+                    elif i==8:
+                        #Temporada
+                        validar=Validaciones(500,1)
+                        x=str(validar.validar_numero())
+                    elif i==9:
+                        #Episodio
+                        validar=Validaciones(500,1)
+                        x=str(validar.validar_numero())
+                    elif i==10:
+                        #Titulo del Episodio
+                        validar=Validaciones(30,1)
+                        x=validar.validar_string()
+                    elif i==11:
+                        #Tema
+                        validar=Validaciones(30,1)
+                        x=validar.validar_string()
+
+                    datos.append(","+x)
                 return datos
-
-            else:
-                print("No se pudo determinar el tipo de contenido")
-
 
 class Archivadora():
+
     def archivar_peliculas(self,_datos_line,nuevo_peli):
         lista=_datos_line
         global peliculas 
@@ -313,7 +405,7 @@ class Archivadora():
         cla=nuevo_seri[0]
         cla=cla[1]
         id_key=cla[0]
-        serie_dic[id_key][cla]=serie_obj
+        serie_dic[id_key+cla]=serie_obj
         serie_obj.muestra_datos()
          
 
@@ -342,11 +434,10 @@ class Archivadora():
         cla=nuevo_docu[0]
         cla=cla[1]
         id_key=cla[0]
-        serie_dic[id_key][cla]=document_obj
+        serie_dic[id_key+cla]=document_obj
         document_obj.muestra_datos()
         
             #documental=
-            
             
 
 
