@@ -134,8 +134,8 @@ class Validaciones():
 
 class CSV():
 
-    def leer(self):
-        name_file=str(input("Ingrese el nombre de su archivo: "))
+    def leer(self,archive):
+        name_file=archive
         file_=open(name_file+".csv","r")
         _datos_lec=file_.readlines()
         _datos_lec.pop(0)
@@ -172,7 +172,8 @@ class CSV():
 
                 _file_.write(file_list[i])
             else:
-                _file_.write(file_list[i]+",")
+
+                _file_.write(file_list[i])
         _file_.close()
 
 class PideValor():
@@ -215,30 +216,32 @@ class PideValor():
                         
                     elif i==3:
                         validar=Validaciones(500,1)
-                        x=validar.validar_numero(x)
+                        x=str(validar.validar_numero(x))
                        
                     elif i==4:
                         validar=Validaciones(5,1)
-                        x=validar.validar_numero(x)
+                        x=str(validar.validar_numero(x))
                         
                     elif i==5:
                         validar=Validaciones(15,1)
                         x=validar.validar_string(x)
                     elif i==6:
                         validar=Validaciones(500,1)
-                        x=validar.validar_numero(x)
+                        x=str(validar.validar_numero(x))
+                        
                     elif i==7:
                         validar=Validaciones(500,1)
-                        x=validar.validar_numero(x)
+                        x=str(validar.validar_numero(x))
                     elif i==8:
                         validar=Validaciones(30,1)
                         x=validar.validar_string(x)
                     elif i==9:
                         validar=Validaciones(30,1)
                         x=validar.validar_string(x)
-                    datos.append(str(x))
-
+                    datos.append(","+x)
                 datos.append(",,,")
+
+              
                 
                 return datos
                             
@@ -247,7 +250,7 @@ class PideValor():
                     print(datos_contenido[i])
                     x=input("->")
                     datos.append(x)
-                datos.append(",")
+               
                 return datos
 
             elif ap == "d":
@@ -268,40 +271,50 @@ class Archivadora():
         peliculas={}
         for line in lista:
             fields = line.split(",")
+            id_key__ = fields[0]
+            titulo=fields[1]
+            genero=fields[2]
+            duración=fields[3]
+            calificaci=fields[4]
+            audien=fields[5]
+            cla=id_key__[1]
+            id_key=id_key__[0]
+            peliculon=Peliculas(id_key__,titulo,genero,duración,calificaci,audien)
+            peliculas[id_key+cla]=peliculon
+        peliculon=Peliculas(nuevo_peli[0],nuevo_peli[1],nuevo_peli[2],nuevo_peli[3],nuevo_peli[4],nuevo_peli[5])
+        cla=nuevo_peli[0]
+        cla=cla[1]
+        id_key=cla[0]
+        peliculas[id_key+cla]=peliculon
+        peliculon.muestra_datos()
+
+    
+    def archivar_series(self,_datos_line,nuevo_seri):
+
+        lista=_datos_line
+        global serie_dic
+        serie_dic={}
+        for line in lista:
+            fields = line.split(",")
             id_key = fields[0]
             titulo=fields[1]
             genero=fields[2]
             duración=fields[3]
             calificaci=fields[4]
             audien=fields[5]
+            temporada=fields[6]
+            episodio=fields[7]
+            til_epi=fields[8]
             cla=id_key[0]
-            peliculon=Peliculas(id_key,titulo,genero,duración,calificaci,audien)
-            peliculas[cla]=peliculon
-        peliculon=Peliculas(nuevo_peli[0],nuevo_peli[1],nuevo_peli[2],nuevo_peli[3],nuevo_peli[4],nuevo_peli[5])
-        cla=nuevo_peli[0]
+            id_key=cla[0]
+            serie_obj=Serie(id_key,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi)
+            serie_dic[id_key][cla]=serie_obj
+        serie_obj=Peliculas(nuevo_seri[0],nuevo_seri[1],nuevo_seri[2],nuevo_seri[3],nuevo_seri[4],nuevo_seri[5])
+        cla=nuevo_seri[0]
         cla=cla[1]
-        peliculas[cla]=peliculon
-        peliculon.muestra_datos()
-
-    
-    def archivar_series(self,_datos_line,nuevo_seri):
-        lista=_datos_line
-        global series
-        series={}
-        for line in range(len(lista)):
-            id_key = line[0]
-            titulo=line[1]
-            genero=line[2]
-            duración=line[3]
-            calificaci=line[4]
-            audien=line[5]
-            temporada=line[6]
-            episodio=line[7]
-            til_epi=line[8]
-            key=id_key[1]
-            series_odj=Serie(id_key,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi)
-            series[key]=series_odj
-        series_odj.muestra_datos()
+        id_key=cla[0]
+        serie_dic[id_key][cla]=serie_obj
+        serie_obj.muestra_datos()
          
 
             
@@ -321,10 +334,17 @@ class Archivadora():
             episodio=line[7]
             til_epi=line[8]
             tema=line[9]
-            documen_obj=Documental(id,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
+            document_obj=Documental(id,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
             key=id[1]
-            series[key]=documen_obj
-        documen_obj.muestra_datos()
+            id_key=id[0]
+            serie_dic[id_key][key]=document_obj
+        document_obj=Documental(nuevo_docu[0],nuevo_docu[1],nuevo_docu[2],nuevo_docu[3],nuevo_docu[4],nuevo_docu[5],nuevo_docu[6],nuevo_docu[7],nuevo_docu[8],nuevo_docu[9])
+        cla=nuevo_docu[0]
+        cla=cla[1]
+        id_key=cla[0]
+        serie_dic[id_key][cla]=document_obj
+        document_obj.muestra_datos()
+        
             #documental=
             
             

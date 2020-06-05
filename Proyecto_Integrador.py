@@ -52,12 +52,10 @@ class Eleccion():
         option = option.validar_opcion_menu()
 
         if option == 1:
-            archive = CSV()
-            archive_lec,_datos_lec = archive.leer()
+            archive_=str(input("Ingrese el nombre de su archivo: "))
 
         elif option == 2:
             archive = CSV()
-            archive_lec = archive.crear()
             
 
         
@@ -72,7 +70,8 @@ class Eleccion():
 
 
             if option == 1:
-                
+                archive = CSV()
+                archive_lec,_datos_lec = archive.leer(archive_)
                 objeto=Videos("","","","")
                 x=objeto.pide_datos()
                 id_=x[0]
