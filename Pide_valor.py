@@ -1,10 +1,5 @@
 
-#Instituto Tecnologico de Estudios Superiores de Monterrey
-#Ricardo Adolfo González Terán
-#A01769410
-#Actvidad en este programa: Validacion de Valores y Escritura de Datos
-
-#----CLASES----
+import time 
 
 class Videos():
     def __init__(self,ID,Titulo,Duracion,Calificacion):
@@ -307,7 +302,12 @@ class PideValor():
                         x=validar.validar_string()
 
                     datos.append(","+x)
+                    datos.append(",")
+                    x=input("->")
+                    datos.append(x)
+
                 datos.append(",")
+               
                 return datos
 
             elif id_completo[0] == "D":
@@ -357,38 +357,11 @@ class PideValor():
 
 class Archivadora():
 
-    def archivar_peliculas(self,_datos_line,nuevo_peli):
-        lista=_datos_line
-        global peliculas 
-        peliculas={}
+    def archivadora_general (self,_datos_line,x):
+        lista=_datos_line+x
         for line in lista:
-            fields = line.split(",")
-            id_key__ = fields[0]
-            titulo=fields[1]
-            genero=fields[2]
-            duración=fields[3]
-            calificaci=fields[4]
-            audien=fields[5]
-            cla=id_key__[1]
-            id_key=id_key__[0]
-            peliculon=Peliculas(id_key__,titulo,genero,duración,calificaci,audien)
-            peliculas[id_key+cla]=peliculon
-        peliculon=Peliculas(nuevo_peli[0],nuevo_peli[1],nuevo_peli[2],nuevo_peli[3],nuevo_peli[4],nuevo_peli[5])
-        cla=nuevo_peli[0]
-        cla=cla[1]
-        id_key=cla[0]
-        peliculas[id_key+cla]=peliculon
-        peliculon.muestra_datos()
-
-    
-    def archivar_series(self,_datos_line,nuevo_seri):
-
-        lista=_datos_line
-        global serie_dic
-        serie_dic={}
-        for line in lista:
-            fields = line.split(",")
-            id_key = fields[0]
+            fields = line.split(",") 
+            id = fields[0]
             titulo=fields[1]
             genero=fields[2]
             duración=fields[3]
@@ -397,45 +370,60 @@ class Archivadora():
             temporada=fields[6]
             episodio=fields[7]
             til_epi=fields[8]
-            cla=id_key[0]
-            id_key=cla[0]
-            serie_obj=Serie(id_key,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi)
-            serie_dic[id_key][cla]=serie_obj
-        serie_obj=Peliculas(nuevo_seri[0],nuevo_seri[1],nuevo_seri[2],nuevo_seri[3],nuevo_seri[4],nuevo_seri[5])
-        cla=nuevo_seri[0]
-        cla=cla[1]
-        id_key=cla[0]
-        serie_dic[id_key+cla]=serie_obj
+            tema=fields[9]
+            cla=id[1]
+            id_key=id[0]
+            cla=cla.lower()
+            id_key=id_key.lower()
+            if id_key =="p":
+                self.archivar_peliculas(id,titulo, genero,duración,calificaci,audien)
+                
+
+            elif id_key == "s": 
+                self.archivar_series(id,titulo, genero,duración,calificaci,audien,temporada,episodio,til_epi)
+            
+            elif id_key =="d":
+                self.archivar_documentales(id,titulo, genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
+            
+
+
+    def archivar_peliculas(self,id,titulo, genero,duración,calificaci,audien):
+        global peliculas 
+        peliculas={}
+        cla=id[1]
+        id_key=id[0]
+        peliculon=Peliculas(id,titulo,genero,duración,calificaci,audien)
+        peliculas[id_key+cla]=peliculon
+        peliculon.muestra_datos()
+        time.sleep(4)
+
+
+    
+    def archivar_series(self,id_key,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi):
+
+
+        global serie_dic
+        serie_dic={}
+        serie_obj=Serie(id_key,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi)
+        cla=id_key[1]
+        id_key__=id_key[0]
+        serie_dic[id_key__+cla]=serie_obj
         serie_obj.muestra_datos()
-         
+        time.sleep(4)
+        
 
             
     
-    def archivar_documentales(self,_datos_line,nuevo_docu):
-        lista=_datos_line
+    def archivar_documentales(self,id,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi,tema):
         global archivar_documentales
         archivar_documentales={}
-        for line in lista:
-            id = line[0]
-            titulo=line[1]
-            genero=line[2]
-            duración=line[3]
-            calificaci=line[4]
-            audien=line[5]
-            temporada=line[6]
-            episodio=line[7]
-            til_epi=line[8]
-            tema=line[9]
-            document_obj=Documental(id,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
-            key=id[1]
-            id_key=id[0]
-            serie_dic[id_key][key]=document_obj
-        document_obj=Documental(nuevo_docu[0],nuevo_docu[1],nuevo_docu[2],nuevo_docu[3],nuevo_docu[4],nuevo_docu[5],nuevo_docu[6],nuevo_docu[7],nuevo_docu[8],nuevo_docu[9])
-        cla=nuevo_docu[0]
-        cla=cla[1]
-        id_key=cla[0]
-        serie_dic[id_key+cla]=document_obj
+        document_obj=Documental(id,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
+        key=id[1]
+        id_key=id[0]
+        serie_dic[id_key+key]=document_obj
         document_obj.muestra_datos()
+        time.sleep(4)
+        
         
             #documental=
             

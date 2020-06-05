@@ -42,6 +42,7 @@ class Menu():
         print("10. Salir")
         print("-"*32)
 
+
 class Eleccion():
     
     def inicio_de_menu (self):
@@ -51,7 +52,7 @@ class Eleccion():
         option = option.validar_opcion_menu()
 
         if option == 1:
-            archive_=str(input("Ingrese el nombre de su archivo: -->"))
+            archive_=str(input("Ingrese el nombre de su archivo: "))
 
         elif option == 2:
             archive = CSV()
@@ -73,20 +74,10 @@ class Eleccion():
                 archive_lec,_datos_lec = archive.leer(archive_)
                 objeto=Videos("","","","")
                 x=objeto.pide_datos()
-                id_=x[0]
-                id_=id_[0]
-                id_=id_.lower()
-                if id_[0]=="p":
-                    peli=Archivadora()
-                    peli.archivar_peliculas(_datos_lec,x)
-                    
-                elif id_[0]=="s":
-                    seri=Archivadora()
-                    seri.archivar_series(_datos_lec,x)
-                   
-                elif id_[0]=="d":
-                    docu=Archivadora()
-                    docu.archivar_documentales(_datos_lec,x)
+         
+                peli=Archivadora()
+                peli.archivadora_general(_datos_lec,x)
+           
                 escritura=CSV()
                 escritura.escribir(_datos_lec,x)
 
