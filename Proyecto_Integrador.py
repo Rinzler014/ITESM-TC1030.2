@@ -41,6 +41,8 @@ class Menu():
         print("9. Listado por calificaciones")
         print("10. Salir")
         print("-"*32)
+
+
 class Eleccion():
     
     def inicio_de_menu (self):
@@ -51,7 +53,7 @@ class Eleccion():
 
         if option == 1:
             archive = CSV()
-            archive_lec = archive.leer()
+            archive_lec,_datos_lec = archive.leer()
 
         elif option == 2:
             archive = CSV()
@@ -77,16 +79,18 @@ class Eleccion():
                 id_=id_[0]
                 id_=id_.lower()
                 if id_[0]=="p":
-                    obj_peli=Peliculas(x[0],x[1],x[2],x[3],x[4],x[5])
-                    obj_peli.muestra_datos()
+                    peli=Archivadora()
+                    peli.archivar_peliculas(_datos_lec,x)
+                    
                 elif id_[0]=="s":
-                    obj_peli=Serie(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8])
-                    obj_peli.muestra_datos()
+                    seri=Archivadora()
+                    seri.archivar_series(_datos_lec,x)
+                   
                 elif id_[0]=="d":
-                    obj_peli=Documental(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9])
-                    obj_peli.muestra_datos()
+                    docu=Archivadora()
+                    docu.archivar_documentales(_datos_lec,x)
                 escritura=CSV()
-                escritura.escribir(archive_lec,x)
+                escritura.escribir(_datos_lec,x)
 
 
             elif option == 2:
