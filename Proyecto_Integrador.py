@@ -17,7 +17,7 @@ class Menu():
         print("-"*7+" Antes de Iniciar "+"-"*7)
         print("-"*32)
         print("-"*1+" Seleccione la opcion deseada "+"-"*1)
-        print("1. Ya cuento con un archivo (el archivo debe de ser .csv)")
+        print("1. Ya cuento con un archivo (el archivo debe de ser)")
         print("2. No tengo archivo (crea uno y agrega videos)")
         print("-"*32)
 
@@ -74,12 +74,11 @@ class Eleccion():
                 archive_lec,_datos_lec = archive.leer(archive_)
                 objeto=Videos("","","","")
                 x=objeto.pide_datos()
-         
-                peli=Archivadora()
-                peli.archivadora_general(_datos_lec,x)
-           
                 escritura=CSV()
                 escritura.escribir(_datos_lec,x)
+                peli=Archivadora()
+                peli.archivadora_general(archive_)
+           
 
 
             elif option == 2:

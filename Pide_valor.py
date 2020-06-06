@@ -13,10 +13,7 @@ class Videos():
         return x
 
     def muestra_datos(self):
-        print("El ID es: ", self.ID)
-        print("El titulo es: ",self.Titulo)
-        print("la duración es: ",self.Duracion)
-        print("La calificación es: ",self.Calificacion)
+        print("El ID es: ", self.ID,"El titulo es: ",self.Titulo,"la duración es: ",self.Duracion,"La calificación es: ",self.Calificacion)
 
 class Peliculas (Videos):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero):
@@ -29,8 +26,7 @@ class Peliculas (Videos):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("La audiencia para esta serie es: ",self.Audiencia)
-        print("La genero para esta serie es: ",self.Genero)
+        print("\La audiencia para esta serie es: ",self.Audiencia,"La genero para esta serie es: ",self.Genero)
 
 class Serie (Peliculas):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio):
@@ -44,9 +40,7 @@ class Serie (Peliculas):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("La temporada es: ",self.Temporada)
-        print("El episodio es: ",self.Episodio)
-        print("El tilulo del episodio es: ",self.Til_episodio)
+        print("\La temporada es: ",self.Temporada,"El episodio es: ",self.Episodio,"El tilulo del episodio es: ",self.Til_episodio)
 
 class Documental (Serie):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio,Tema):
@@ -58,7 +52,7 @@ class Documental (Serie):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("El tema del documental es: ", self.Tema)
+        print("\El tema del documental es: ", self.Tema)
 
 class Validaciones():
 
@@ -293,7 +287,7 @@ class PideValor():
                 return datos
                             
             elif id_completo[0] == "S":
-                for i in range(1,8):
+                for i in range(1,9):
                     print(datos_contenido[i])
 
                     x=input("->")
@@ -328,7 +322,7 @@ class PideValor():
                         x=str(validar.validar_string(int(x)))
                     
                     elif i==8:
-                        #Genero
+                        #til_episo
                         validar=Validaciones(30,1)
                         x=validar.validar_string(x)
 
@@ -337,13 +331,13 @@ class PideValor():
 
                     datos.append(","+x)
 
-                datos.append(",,")
+                datos.append(",")
                
                 return datos
 
             elif id_completo[0] == "D":
 
-                for i in range(1,9):
+                for i in range(1,10):
                     print(datos_contenido[i])
                     x=input("->")
                     
@@ -394,9 +388,12 @@ class PideValor():
 
 class Archivadora():
 
-    def archivadora_general (self,_datos_line,x):
-        lista=_datos_line
-        for line in lista:
+    def archivadora_general (self,archivo):
+
+        lista,readline_archi=CSV().leer(archivo)
+        global general_dic
+        general_dic={}
+        for line in readline_archi:
             fields = line.split(",") 
             id = fields[0]
             titulo=fields[1]
@@ -413,17 +410,15 @@ class Archivadora():
             cla=cla.lower()
             id_key=id_key.lower()
             if id_key =="p":
-                self.archivar_peliculas(id,titulo, genero,duración,calificaci,audien)
+                x=self.archivar_peliculas(id,titulo, genero,duración,calificaci,audien)
                 
 
             elif id_key == "s": 
-                self.archivar_series(id,titulo, genero,duración,calificaci,audien,temporada,episodio,til_epi)
+                x=self.archivar_series(id,titulo, genero,duración,calificaci,audien,temporada,episodio,til_epi)
             
             elif id_key =="d":
-                self.archivar_documentales(id,titulo, genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
-            
-
-
+                x=self.archivar_documentales(id,titulo, genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
+            general_dic[1]=x
     def archivar_peliculas(self,id,titulo, genero,duración,calificaci,audien):
         global peliculas 
         peliculas={}
@@ -431,11 +426,12 @@ class Archivadora():
         cla=id[1]
         id_key=id[0]
         peliculon=Peliculas(id,titulo,genero,duración,calificaci,audien)
-        peliculas[id_key]=peli_clasi
         peli_clasi[cla]=peliculon
-        peliculon.muestra_datos()
-        #time.sleep(4)
+        peliculas[id_key]=peli_clasi
 
+        #peliculon.muestra_datos()
+        #time.sleep(4)
+        return peliculas
 
     
     def archivar_series(self,id_key,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi):
@@ -447,27 +443,47 @@ class Archivadora():
         serie_obj=Serie(id_key,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi)
         cla=id_key[1]
         id_key__=id_key[0]
-        serie_dic[id_key__]=serie_cla
         serie_cla[cla]= serie_obj
-        serie_obj.muestra_datos()
+
+        serie_dic[id_key__]=serie_cla
+# serie_obj.muestra_datos()
         #time.sleep(4)
+        return serie_dic
+
         
 
             
     
     def archivar_documentales(self,id,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi,tema):
-        global archivar_documentales
-        archivar_documentales={}
+        global archivar_documentales_dic
+        archivar_documentales_dic={}
+        document_cla={}
         document_obj=Documental(id,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
         key=id[1]
         id_key=id[0]
-        serie_dic[id_key+key]=document_obj
-        document_obj.muestra_datos()
+        document_cla[key]=document_obj
+        archivar_documentales_dic[id_key]=document_cla
+        return  archivar_documentales_dic
         #time.sleep(4)
         
         
             #documental=
-            
+
+class Mostrar_listas():
+    def __init__ (self):
+
+        pass
+    def lista_general(self):
+        #for key in 
+        pass
+    def lista_series(self):
+        pass
+    def listado_documentales(self):
+        pass
+
+    def listado_por_calificación(self):
+        pass
+
 
 
 
