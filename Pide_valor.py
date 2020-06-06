@@ -13,7 +13,7 @@ class Videos():
         return x
 
     def muestra_datos(self):
-        print("El ID es: ", self.ID,"El titulo es: ",self.Titulo,"la duración es: ",self.Duracion,"La calificación es: ",self.Calificacion)
+        print("El ID es: ", self.ID,"El titulo es: ",self.Titulo,"la duración es: ",self.Duracion,"La calificación es: ",self.Calificacion, end=" ")
 
 class Peliculas (Videos):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero):
@@ -26,7 +26,7 @@ class Peliculas (Videos):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("\La audiencia para esta serie es: ",self.Audiencia,"La genero para esta serie es: ",self.Genero)
+        print("\La audiencia para esta serie es: ",self.Audiencia,"La genero para esta serie es: ",self.Genero, end=" ")
 
 class Serie (Peliculas):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio):
@@ -40,7 +40,7 @@ class Serie (Peliculas):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("\La temporada es: ",self.Temporada,"El episodio es: ",self.Episodio,"El tilulo del episodio es: ",self.Til_episodio)
+        print("\La temporada es: ",self.Temporada,"El episodio es: ",self.Episodio,"El tilulo del episodio es: ",self.Til_episodio, end=" ")
 
 class Documental (Serie):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio,Tema):
@@ -419,6 +419,7 @@ class Archivadora():
             elif id_key =="d":
                 x=self.archivar_documentales(id,titulo, genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
             general_dic[1]=x
+            print("__")
     def archivar_peliculas(self,id,titulo, genero,duración,calificaci,audien):
         global peliculas 
         peliculas={}
@@ -446,13 +447,8 @@ class Archivadora():
         serie_cla[cla]= serie_obj
 
         serie_dic[id_key__]=serie_cla
-# serie_obj.muestra_datos()
-        #time.sleep(4)
         return serie_dic
-
-        
-
-            
+           
     
     def archivar_documentales(self,id,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi,tema):
         global archivar_documentales_dic
@@ -471,10 +467,11 @@ class Archivadora():
 
 class Mostrar_listas():
     def __init__ (self):
-
         pass
     def lista_general(self):
-        #for key in 
+        for key in  general_dic.keys():
+            print(key)
+            pass
         pass
     def lista_series(self):
         pass

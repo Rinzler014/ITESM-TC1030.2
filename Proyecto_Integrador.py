@@ -91,7 +91,10 @@ class Eleccion():
                 pass 
 
             elif option == 5:
-                pass
+                op_5=Archivadora()
+                op_5.archivadora_general(archive_)
+                Mostrar_listas().lista_general()
+
 
             elif option == 6:
                 pass
