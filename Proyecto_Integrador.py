@@ -71,7 +71,7 @@ class Eleccion():
 
             if option == 1:
                 archive = CSV()
-                archive_lec,_datos_lec = archive.leer(archive_)
+                _datos_lec = archive.leer(archive_)
                 objeto=Videos("","","","")
                 x=objeto.pide_datos()
                 escritura=CSV()

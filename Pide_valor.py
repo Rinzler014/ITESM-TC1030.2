@@ -26,7 +26,7 @@ class Peliculas (Videos):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("\La audiencia para esta serie es: ",self.Audiencia,"La genero para esta serie es: ",self.Genero, end=" ")
+        print("La audiencia para esta serie es: ",self.Audiencia,"La genero para esta serie es: ",self.Genero, end=" ")
 
 class Serie (Peliculas):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio):
@@ -40,7 +40,7 @@ class Serie (Peliculas):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("\La temporada es: ",self.Temporada,"El episodio es: ",self.Episodio,"El tilulo del episodio es: ",self.Til_episodio, end=" ")
+        print("La temporada es: ",self.Temporada,"El episodio es: ",self.Episodio,"El tilulo del episodio es: ",self.Til_episodio, end=" ")
 
 class Documental (Serie):
     def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio,Tema):
@@ -52,7 +52,7 @@ class Documental (Serie):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("\El tema del documental es: ", self.Tema)
+        print("El tema del documental es: ", self.Tema)
 
 class Validaciones():
 
@@ -202,14 +202,9 @@ class CSV():
         _datos_lec=file_.readlines()
         _datos_lec.pop(0)
         file_.close()
-        _datos_line=[]
-        for line in _datos_lec:
-            columna=line.split(",")
-            for i in range (len(columna)):
-                _datos_line.append(columna[i])
         
             
-        return _datos_line,_datos_lec
+        return _datos_lec
     
     
     def crear(self):
@@ -390,9 +385,10 @@ class Archivadora():
 
     def archivadora_general (self,archivo):
 
-        lista,readline_archi=CSV().leer(archivo)
+        readline_archi=CSV().leer(archivo)
         global general_dic
         general_dic={}
+        n=0
         for line in readline_archi:
             fields = line.split(",") 
             id = fields[0]
@@ -411,6 +407,7 @@ class Archivadora():
             id_key=id_key.lower()
             if id_key =="p":
                 x=self.archivar_peliculas(id,titulo, genero,duración,calificaci,audien)
+
                 
 
             elif id_key == "s": 
@@ -418,8 +415,10 @@ class Archivadora():
             
             elif id_key =="d":
                 x=self.archivar_documentales(id,titulo, genero,duración,calificaci,audien,temporada,episodio,til_epi,tema)
-            general_dic[1]=x
-            print("__")
+            
+            general_dic[n]=x
+            n=n+1
+         
     def archivar_peliculas(self,id,titulo, genero,duración,calificaci,audien):
         global peliculas 
         peliculas={}
@@ -435,18 +434,21 @@ class Archivadora():
         return peliculas
 
     
-    def archivar_series(self,id_key,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi):
+    def archivar_series(self,id_key_ser,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi):
 
 
         global serie_dic
         serie_dic={}
         serie_cla={}
-        serie_obj=Serie(id_key,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi)
-        cla=id_key[1]
-        id_key__=id_key[0]
-        serie_cla[cla]= serie_obj
+        serie_obj=Serie(id_key_ser,titulo,genero,duración,calificaci,audien,temporada,episodio,til_epi)
+        cla=id_key_ser[1]
+    
+        id_key__serie=id_key_ser[0]
 
-        serie_dic[id_key__]=serie_cla
+       
+        serie_cla[cla]=serie_obj
+        serie_dic[id_key__serie]=serie_cla
+        
         return serie_dic
            
     
@@ -469,9 +471,14 @@ class Mostrar_listas():
     def __init__ (self):
         pass
     def lista_general(self):
+    
         for key in  general_dic.keys():
-            print(key)
-            pass
+            for key_2da in general_dic[key].keys():
+                for valor in general_dic[key][key_2da].values():
+                    valor.muestra_datos()
+                    print("\n")
+                    
+                time.sleep(1)
         pass
     def lista_series(self):
         pass
