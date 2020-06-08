@@ -235,7 +235,6 @@ class PideValor():
 
 
     def tomar_datos(self):
-        
         while 1:
 
             datos_contenido=["¿Cual es el id?","¿Cual es el titulo ?","¿Cual es su duración?","¿Cual es la Calicación?","¿Cual es la audiencia?","¿Cual es el genero?","¿Cual es la temporada?","¿Qué episodio es?","¿Título del episodio?", "¿Cual es el tema?" ]
@@ -371,13 +370,19 @@ class PideValor():
                         #til_tema
                         validar=Validaciones(30,1)
                         x=validar.validar_string(x)
-
-
                     
-
    
                     datos.append(","+x)
                 return datos
+    
+    def tomar_limites_(self):
+        limite_infe=int(input("Desde que calificación quiere visualizar  ")) 
+
+        limite_supe=int(input("¿Cual es limite? ")) 
+
+        return limite_infe,limite_supe
+
+
 
 class Archivadora():
 
@@ -514,8 +519,18 @@ class Mostrar_listas():
             time.sleep(1)
 
 
-    def listado_por_calificación(self):
-        pass
+    def listado_por_calificación(self,limite_inf_cal,limite_superior_cal):
+        for key in  general_dic.keys():
+            for key_2da in general_dic[key].keys():
+                for valor in general_dic[key][key_2da].values():
+                    if int(valor.Calificacion) >=limite_inf_cal and int(valor.Calificacion)<= limite_superior_cal: 
+
+                        valor.muestra_datos()
+                        print("\n")
+                    
+                    
+                time.sleep(1)
+        
 
 
 

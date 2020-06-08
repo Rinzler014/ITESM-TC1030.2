@@ -1,8 +1,9 @@
-ID,Titulo,Duraciï¿½n,Calificaciï¿½n,Audiencia,Genero,Temporada,Episodio,Titulo del episodio,Tema
-SA023,The office,Comedia ,42,8,Jovenes adultos,9,3,locos,
-PC320,La cosa,100,9,Jovenes,Suspenso,,,,
-DA032,Muerte,42,7,Adultos,suspenso,3,2,Yo,no
-SD435,Bb,42,10,cOLL,suspenso,3,3,Mosca,,,
-PC233,HER,160,10,Jovenes,Trajedia,,,,
-PD233,Darko,nadie sabe,140,4,YO,,,,
-PA212,DOCTOR STRANGE,accion,122,4,Jovenes,,,,
+ID,Titulo,Duración,Calificación,Audiencia,Genero,Temporada,Episodio,Titulo del episodio,Tema
+SA023,The office,323,4,J. Adultos,Comedia ,9,3,locos,
+PC320,La cosa,100,5,Jovenes,Suspenso,,,,
+DA032,Muerte,42,2,Adultos,suspenso,3,2,Yo,no
+SD435,Bb,42,5,cOLL,suspenso,3,3,Mosca,
+PC233,HER,160,5,Jovenes,Trajedia,,,,
+PD233,Darko,200,4,4,YO,,,,
+PA212,DOCTOR STRANGE,accion,2,4,Jovenes,,,,
+PD323,the simpsons,434,5,J. Adultos,Comedia,,,,

@@ -1,8 +1,3 @@
-#Instituto Tecnologico de Estudios Superiores de Monterrey
-#Ricardo Adolfo González Terán
-#A01769410
-#Anatanael Jesus Miranda Faustino
-#Actvidad en este programa: Proyecto Integrador
 
 #----IMPORTS---
 
@@ -113,7 +108,10 @@ class Eleccion():
                 Mostrar_listas().listado_documentales()
 
             elif option == 9:
-                pass
+                op_5=Archivadora()
+                op_5.archivadora_general(archive_)
+                inferio,superior=PideValor().tomar_limites_()
+                Mostrar_listas().listado_por_calificación(inferio,superior)
 
             elif option ==10:
                 print("EXIT REQUESTED BY USER...//")
