@@ -97,13 +97,20 @@ class Eleccion():
 
 
             elif option == 6:
+                op_5=Archivadora()
+                op_5.archivadora_general(archive_)
+                Mostrar_listas().lista_peliculas()
                 pass
 
             elif option == 7:
-                pass
+                op_5=Archivadora()
+                op_5.archivadora_general(archive_)
+                Mostrar_listas().lista_series()
 
             elif option == 8:
-                pass
+                op_5=Archivadora()
+                op_5.archivadora_general(archive_)
+                Mostrar_listas().listado_documentales()
 
             elif option == 9:
                 pass

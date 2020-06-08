@@ -191,8 +191,6 @@ class Validaciones():
         #id_completo = id_contenido+clasif_contenido+num_contenido
 
         return validar_id
-    
-
 
 class CSV():
 
@@ -481,9 +479,40 @@ class Mostrar_listas():
                 time.sleep(1)
         pass
     def lista_series(self):
-        pass
+        for key in  general_dic.keys():
+            for key_2da in general_dic[key].keys():
+
+                if key_2da == "S":
+                    for valor in general_dic[key][key_2da].values():
+                        valor.muestra_datos()
+                        print("\n")
+
+                
+            time.sleep(1)
+        
     def listado_documentales(self):
-        pass
+        for key in  general_dic.keys():
+            for key_2da in general_dic[key].keys():
+
+                if key_2da == "D":
+                    for valor in general_dic[key][key_2da].values():
+                        valor.muestra_datos()
+                        print("\n")
+                else:
+                    pass
+            time.sleep(1)
+
+        
+    def lista_peliculas(self):
+        for key in  general_dic.keys():
+            for key_2da in general_dic[key].keys():
+
+                if key_2da == "P":
+                    for valor in general_dic[key][key_2da].values():
+                        valor.muestra_datos()
+                        print("\n")
+            time.sleep(1)
+
 
     def listado_por_calificación(self):
         pass
