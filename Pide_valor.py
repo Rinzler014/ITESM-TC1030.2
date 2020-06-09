@@ -539,8 +539,7 @@ class Mostrar_listas():
                     
                     
                 time.sleep(1)
-      
-        
+  
 class Consultas():
 
     def consulta_por_id(self):
