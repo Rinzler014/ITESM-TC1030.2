@@ -37,7 +37,6 @@ class Menu():
         print("10. Salir")
         print("-"*32)
 
-
 class Eleccion():
     
     def inicio_de_menu (self):
@@ -52,10 +51,6 @@ class Eleccion():
         elif option == 2:
             archive = CSV()
             
-
-        
-
-
         while 1:
 
             menu=Menu()
@@ -74,16 +69,20 @@ class Eleccion():
                 peli=Archivadora()
                 peli.archivadora_general(archive_)
            
-
-
             elif option == 2:
-                pass
+                op_2 = Archivadora()
+                op_2.archivadora_general(archive_)
+                Consultas().consulta_por_id()
 
             elif option == 3:
-                pass
+                op_3 = Archivadora()
+                op_3.archivadora_general(archive_)
+                Consultas().consulta_por_titulo()
 
             elif option == 4:
-                pass 
+                op_4 = Archivadora()
+                op_4.archivadora_general(archive_) 
+                Consultas().consulta_por_genero()
 
             elif option == 5:
                 op_5=Archivadora()

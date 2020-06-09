@@ -1,4 +1,5 @@
 
+import csv
 import time 
 
 class Videos():
@@ -92,13 +93,10 @@ class Validaciones():
                         print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)") 
                         string=input("->") 
                     else: 
-                        return string 
- 
-                 
+                        return string  
             else: 
                 return string 
             return string 
- 
  
     def validar_numero(self, integer_): 
  
@@ -382,7 +380,20 @@ class PideValor():
 
         return limite_infe,limite_supe
 
-
+    def tomar_id(self):
+        print("Ingrese el ID que desea buscar: ")
+        id_name = str(input("-->"))
+        return id_name
+    
+    def tomar_titulo(self):
+        print("Ingrese el titulo que desea buscar: ")
+        title = str(input("-->"))
+        return title
+    
+    def tomar_genero(self):
+        print("Ingrese el genero que desea buscar: ")
+        genre = str(input("-->"))
+        return genre
 
 class Archivadora():
 
@@ -410,8 +421,6 @@ class Archivadora():
             id_key=id_key.lower()
             if id_key =="p":
                 x=self.archivar_peliculas(id,titulo, genero,duración,calificaci,audien)
-
-                
 
             elif id_key == "s": 
                 x=self.archivar_series(id,titulo, genero,duración,calificaci,audien,temporada,episodio,til_epi)
@@ -530,8 +539,90 @@ class Mostrar_listas():
                     
                     
                 time.sleep(1)
+      
         
+class Consultas():
 
+    def consulta_por_id(self):
+
+        while True:
+       
+            identifier = PideValor()
+            id_name = identifier.tomar_id()
+            
+            for key in general_dic.keys():
+                for key_2 in general_dic[key].keys():
+                    for valor in general_dic[key][key_2].values():
+                        if valor.ID == id_name :
+                            valor.muestra_datos()
+
+            print("\nDesea buscar otro ID?")
+            print("1. Si")
+            print("2. Regresar al menú principal")
+            option = Validaciones("","","",2)
+            option = option.validar_opcion_menu()
+
+            if option == 1:
+                pass
+            if option == 2:
+                break
+            
+    def consulta_por_titulo(self):
+        
+        while True:
+
+            title = PideValor()
+            title_name = title.tomar_titulo()
+
+            for key in general_dic.keys():
+                for key_2 in general_dic[key].keys():
+                    for valor in general_dic[key][key_2].values():
+                        if valor.Titulo == title_name:
+                            valor.muestra_datos()
+                            print("\n")
+                            
+            
+            print("\nDesea buscar otro titulo?")
+            print("1. Si")
+            print("2. Regresar al menú principal")
+            option = Validaciones("","","",2)
+            option = option.validar_opcion_menu()
+
+            if option == 1:
+                pass
+            if option == 2:
+                break
+    
+    def consulta_por_genero(self):
+
+        while True:
+
+            genre = PideValor()
+            genre_search = genre.tomar_genero()
+
+            for key in general_dic.keys():
+                for key_2 in general_dic[key].keys():
+                    for valor in general_dic[key][key_2].values():
+                        if valor.genero == genre_search:
+                            valor.muestra_datos()
+            
+            print("\nDesea buscar otro genero?")
+            print("1. Si")
+            print("2. Regresar al menú principal")
+            option = Validaciones("","","",2)
+            option = option.validar_opcion_menu()
+
+            if option == 1:
+                pass
+            if option == 2:
+                break
+            
+
+
+
+       
+
+       
 
 
 
