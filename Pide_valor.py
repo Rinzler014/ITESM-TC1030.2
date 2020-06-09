@@ -3,53 +3,91 @@ import csv
 import time 
 
 class Videos():
-    def __init__(self,ID,Titulo,Duracion,Calificacion):
+    def __init__(self,ID="",Titulo="",Duracion=0,Calificacion=0):
         self.ID=ID
         self.Titulo=Titulo
         self.Duracion=Duracion
         self.Calificacion=Calificacion      
     def pide_datos(self):
-        metodo_=PideValor()
-        x=metodo_.tomar_datos()
-        return x
+        vi_li=[]
+        v=Pide_Valor("Indica el titulo: ", ciclo="si",li=1,ls=30)
+        self.Titulo=v.pide_cadena()
+        v=Pide_Valor("Indica la duración: ", tipo="int",ciclo="si",li=1,ls=500)
+        self.Duracion=str(v.pide_numero())
+        Z=Pide_Valor("Indica la calificación: ", tipo="int",ciclo="si",li=1,ls=5)
+        self.Calificacion=str(Z.pide_numero())
+        vi_li.append(self.ID)
+        vi_li.append(","+self.Titulo)
+        vi_li.append(","+self.Duracion)
+        vi_li.append(","+self.Calificacion)
+        return vi_li
+
 
     def muestra_datos(self):
         print("El ID es: ", self.ID,"El titulo es: ",self.Titulo,"la duración es: ",self.Duracion,"La calificación es: ",self.Calificacion, end=" ")
 
 class Peliculas (Videos):
-    def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero):
+    def __init__(self,ID="",Titulo="",Duracion=0,Calificacion=0,Audiencia="",Genero=""):
         super().__init__(ID,Titulo,Duracion,Calificacion)
         self.Audiencia=Audiencia
         self.Genero=Genero
      
     def pide_datos(self):
-        super().pide_datos()
-
+        pvi_li=super().pide_datos()
+        p=Pide_Valor("Indica el la audiencia: ", ciclo="si",li=1,ls=15)
+        self.Audiencia=p.pide_cadena()
+        p=Pide_Valor("Indica la genero: ",ciclo="si",li=1,ls=15)
+        self.Genero=p.pide_cadena()
+       
+        pvi_li.append(","+self.Audiencia)
+        pvi_li.append(","+self.Genero)
+       
+        return pvi_li
     def muestra_datos(self):
         super().muestra_datos()
         print("La audiencia para esta serie es: ",self.Audiencia,"La genero para esta serie es: ",self.Genero, end=" ")
 
 class Serie (Peliculas):
-    def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio):
+    def __init__(self,ID="",Titulo="",Duracion=0,Calificacion=0,Audiencia="",Genero="",Temporada=0,Episodio=0,Til_episodio=""):
         super().__init__(ID,Titulo,Duracion,Calificacion,Audiencia,Genero)
         self.Temporada=Temporada
         self.Episodio=Episodio
         self.Til_episodio=Til_episodio
 
     def pide_datos(self):
-        super().pide_datos()
+        s_lis=super().pide_datos()
+    
+        
+        s=Pide_Valor("¿Cual es la temporada?: ", tipo="int",ciclo="si",li=1,ls=500)
+        self.Temporada=str(s.pide_numero())
+        s=Pide_Valor("Indica la episodio: ", tipo="int",ciclo="si",li=1,ls=500)
+        self.Episodio=str(s.pide_numero())
+        s=Pide_Valor("Indica el titulo del episodio : ",ciclo="si",li=1,ls=30)
+        self.Til_episodio=str(s.pide_cadena())
+        
+        s_lis.append(","+self.Temporada)
+        s_lis.append(","+self.Episodio)
+        s_lis.append(","+self.Til_episodio)
+        return s_lis
 
     def muestra_datos(self):
         super().muestra_datos()
         print("La temporada es: ",self.Temporada,"El episodio es: ",self.Episodio,"El tilulo del episodio es: ",self.Til_episodio, end=" ")
 
 class Documental (Serie):
-    def __init__(self,ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio,Tema):
+    def __init__(self,ID,Titulo="",Duracion=0,Calificacion=0,Audiencia="",Genero="",Temporada=0,Episodio=0,Til_episodio="",Tema=""):
         super().__init__(ID,Titulo,Duracion,Calificacion,Audiencia,Genero,Temporada,Episodio,Til_episodio)
         self.Tema=Tema
      
     def pide_datos(self):
-        super().pide_datos()
+        d_lis=super().pide_datos()
+        d=Pide_Valor("Tema : ",ciclo="si",li=1,ls=30)
+        self.Tema=str(d.pide_cadena())
+        
+        d_lis.append(","+self.Tema)
+
+        return d_lis
+
 
     def muestra_datos(self):
         super().muestra_datos()
@@ -81,15 +119,14 @@ class Validaciones():
     def validar_string(self,str_): 
             #Si se usa este metodo usar la siguiente nomenclatura: 
             #nombre_objeto=PideValor(limite_inferior,limite_superior) 
-            #nombre_objeto.validar_string 
- 
+           
         while 1: 
             string = str(str_) 
-            if len(string)<=self.lim_in or len(string)>=self.lim_sup: 
+            if len(string)<self.lim_in or len(string)>self.lim_sup: 
                 print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)") 
                 string=input("->") 
                 while 1: 
-                    if len(string)<=self.lim_in or len(string)>=self.lim_sup: 
+                    if len(string)<self.lim_in or len(string)>self.lim_sup: 
                         print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)") 
                         string=input("->") 
                     else: 
@@ -98,25 +135,7 @@ class Validaciones():
                 return string 
             return string 
  
-    def validar_numero(self): 
- 
-        #Si se usa este metodo usar la siguiente nomenclatura: 
-        #nombre_objeto=PideValor(limite_inferior,limite_superior,tipo(solo "int", de lo contrario dejar en blanco)) 
-        #nombre_objeto.validar_numero 
 
-        while 1: 
-            integer = input("-->")
-            try:
-                while 1:
-                    integer = int(integer)
-                    if integer<self.lim_in or integer>self.lim_sup: 
-                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
-                        break
-                    else:
-                        return integer
-            except ValueError:
-                print("El valor contiene caracteres no validos (INVLAx002)")
- 
     def validacion_del_id(self, usuario_id):
 
         while 1:
@@ -129,7 +148,7 @@ class Validaciones():
             elif id_contenido == "D":
                 break
             else:
-                print("No se pudo determinar el tipo de contenido\n Ingrese nuevamente el ID recuerde que ")
+                print("No se pudo determinar el tipo de contenido\n Ingrese nuevamente el ID recuerde que el primer caracter debe ser P, D O S  ")
                 while 1:
 
                     validar_id=str(input())
@@ -176,14 +195,7 @@ class Validaciones():
                         print("No se pudo determinar la clasificacion del contenido\n")
                 break
 
-        #Validacion del numero de contenido
-        #print(validar_id)
-        #validar_num_contenido = Validaciones(3,1)
-        #num_contenido = str(validar_num_contenido.validar_numero(datos_contenido[2]))
-        #num_contenido = num_contenido
-
-        #Escritura del ID completo
-        #id_completo = id_contenido+clasif_contenido+num_contenido
+   
 
         return validar_id
 
@@ -218,154 +230,85 @@ class CSV():
         _file_=open("Prueba.csv","w+")
         _file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
         for i in range (len (file_list)):
-            if file_list[i]=="\n":
-
-                _file_.write(file_list[i])
-            else:
-
-                _file_.write(file_list[i])
+            _file_.write(file_list[i])
         _file_.close()
 
+class Pide_Valor():
+    def __init__(self, letrero, li=0, ls=0, ciclo="no", tipo="float"):
+        self.letrero=letrero
+        self.li=li
+        self.ls=ls
+        self.ciclo=ciclo.upper()
+        self.tipo=tipo
+
+    def __del__(self):
+        pass
+
+    def error(self):
+        input(self.letrero)
+
+    def pide_cadena(self):
+        while True:
+            cad=input(self.letrero)
+            if (self.ciclo=="NO"): return cad
+            else:
+                if (self.li==0) and (self.ls==0): return cad
+                else:
+                    if len(cad)<self.li or len(cad)>self.ls:
+                        er="Error, la cadena debe estar entre "+str(self.li)+" y "+str(self.ls)+" caracteres ..."
+                        oe=Pide_Valor(er)
+                        oe.error()
+                        del oe
+                    else: return cad
+        # Termina ciclo while true
+    # termina pide_cadena
+
+    def pide_numero(self):
+        while True:
+            cad=input(self.letrero)
+            if not cad.isnumeric():
+                oe=Pide_Valor("Error, la cadena contiene caracteres no validos ...")
+                oe.error()
+                del oe
+            else:
+                if self.tipo=="int" : numero=int(cad)
+                else: numero=float(cad)
+                if self.ciclo=="NO": return numero
+                else:
+                    if (self.li==0) and (self.ls==0): return numero
+                    else:
+                        if numero<self.li or numero>self.ls:
+                            er="Error, valor fuera de rango entre "+str(self.li)+" y "+str(self.ls)+" ..."
+                            oe=Pide_Valor(er)
+                            oe.error()
+                            del oe
+                        else : return numero
 class PideValor():
-
-    def tomar_datos(self):
-        while 1:
-
-            datos_contenido=["¿Cual es el id?","¿Cual es el titulo ?","¿Cual es su duración?","¿Cual es la Calicación?","¿Cual es la audiencia?","¿Cual es el genero?","¿Cual es la temporada?","¿Qué episodio es?","¿Título del episodio?", "¿Cual es el tema?" ]
-
-            datos = []
-            print(datos_contenido[0])
-            id_usuario=str(input("->"))
-            val_id=Validaciones(6,4)
-            id_usuario=val_id.validar_string(id_usuario)
-            id_completo = val_id.validacion_del_id(id_usuario)
-            id_completo=id_completo.upper()
-            datos.append(id_completo)
-            
-            if id_completo[0] == "P":
-                for i in range(1,6):
-                    print(datos_contenido[i])
-                    
-                    if i==1:
-                        #Titulo
-                        validar=Validaciones(30,1)
-                        x=input("->")
-                        x=validar.validar_string(x)
-                    elif i==2:
-                        #Duracion
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero())
-                    elif i==3:
-                        #Calificacion
-                        validar=Validaciones(5,1)
-                        x=str(validar.validar_numero())
-                    elif i==4:
-                        #Audiencia
-                        validar=Validaciones(15,1)
-                        x=input("->")
-                        x=validar.validar_string(x)
-                    elif i==5:
-                        #Genero
-                        validar=Validaciones(15,1)
-                        x=input("->")
-                        x=validar.validar_string(x)
-
-                    datos.append(","+x)
-                datos.append(",,,,")
-                return datos
-                            
-            elif id_completo[0] == "S":
-                for i in range(1,9):
-                    print(datos_contenido[i])
-
-                    x=input("->")
-                    
-                    if i==1:
-                        #Titulo
-                        validar=Validaciones(30,1)
-                        x=validar.validar_string(x)
-                    elif i==2:
-                        #Duracion
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero())
-                    elif i==3:
-                        #Calificacion
-                        validar=Validaciones(5,1)
-                        x=str(validar.validar_numero())
-                    elif i==4:
-                        #Audiencia
-                        validar=Validaciones(15,1)
-                        x=validar.validar_string(x)
-                    elif i==5:
-                        #Genero
-                        validar=Validaciones(15,1)
-                        x=validar.validar_string(x)
-                    elif i==6:
-                        #temporada
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero())
-                    elif i==7:
-                        #Episodio
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero())
-                    elif i==8:
-                        #til_episo
-                        validar=Validaciones(30,1)
-                        x=validar.validar_string(x)
-
-                    datos.append(","+x)
-
-                datos.append(",")
-               
-                return datos
-
-            elif id_completo[0] == "D":
-
-                for i in range(1,10):
-                    print(datos_contenido[i])
-                    x=input("->")
-                    
-                    if i==1:
-                        #Titulo
-                        validar=Validaciones(30,1)
-                        x=validar.validar_string(x)
-                    elif i==2:
-                        #Duracion
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero())
-                    elif i==3:
-                        #Calificacion
-                        validar=Validaciones(5,1)
-                        x=str(validar.validar_numero())
-                    elif i==4:
-                        #Audiencia
-                        validar=Validaciones(15,1)
-                        x=validar.validar_string(x)
-                    elif i==5:
-                        #Genero
-                        validar=Validaciones(15,1)
-                        x=validar.validar_string(x)
-                    elif i==6:
-                        #temporada
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero())
-                    elif i==7:
-                        #Episodio
-                        validar=Validaciones(500,1)
-                        x=str(validar.validar_numero())
-                    
-                    elif i==8:
-                        #tit_episodio
-                        validar=Validaciones(30,1)
-                        x=validar.validar_string(x)
-                    elif i==9:
-                        #til_tema
-                        validar=Validaciones(30,1)
-                        x=validar.validar_string(x)
-                    
-   
-                    datos.append(","+x)
-                return datos
+    def menu_op1(self):
+        print("¿Cual es el id?")
+        id_usuario=str(input("->"))
+        val_id=Validaciones(5,5)
+        id_usuario=val_id.validar_string(id_usuario)
+        id_completo = val_id.validacion_del_id(id_usuario)
+        id_completo=id_completo.upper()
+        
+        if id_completo[0] == "P":
+            peili= Peliculas(id_completo)
+            x=peili.pide_datos()
+            x.append(",,,,")
+        
+        elif id_completo[0] == "S":
+            peili= Serie(id_completo)
+            x=peili.pide_datos()
+            x.append(",")
+        
+        elif id_completo[0] == "D":
+            peili= Documental(id_completo)
+            x=peili.pide_datos()
+        
+        return x 
+    
+    
     
     def tomar_limites_(self):
         limite_infe=int(input("Desde que calificación quiere visualizar  ")) 
@@ -424,6 +367,8 @@ class Archivadora():
             
             general_dic[n]=x
             n=n+1
+        return general_dic
+     
          
     def archivar_peliculas(self,id,titulo, genero,duración,calificaci,audien):
         global peliculas 
@@ -435,8 +380,7 @@ class Archivadora():
         peli_clasi[cla]=peliculon
         peliculas[id_key]=peli_clasi
 
-        #peliculon.muestra_datos()
-        #time.sleep(4)
+
         return peliculas
 
     

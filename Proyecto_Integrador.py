@@ -63,12 +63,11 @@ class Eleccion():
             if option == 1:
                 archive = CSV()
                 _datos_lec = archive.leer(archive_)
-                objeto=Videos("","","","")
-                x=objeto.pide_datos()
+                objeto=PideValor()
+                x=objeto.menu_op1()
                 escritura=CSV()
                 escritura.escribir(_datos_lec,x)
-                peli=Archivadora()
-                peli.archivadora_general(archive_)
+                
            
             elif option == 2:
                 op_2 = Archivadora()

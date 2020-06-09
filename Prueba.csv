@@ -5,9 +5,11 @@ DA032,Muerte,42,2,Adultos,suspenso,3,2,Yo,no
 SD435,Bb,42,5,cOLL,suspenso,3,3,Mosca,
 PC233,HER,160,5,Jovenes,Trajedia,,,,
 PD233,Darko,200,4,4,YO,,,,
-PA212,DOCTOR STRANGE,accion,2,4,Jovenes,,,,
-PD323,the simpsons,434,5,J. Adultos,Comedia,,,,
-PA001,h2,180,5,Todos,Videojuegos,,,,
-PA001,Hola,180,5,Todos,Accion,,,,
-PA005,300,180,5,Adolescentes,Accion,,,,
-SD323,how i MEET Y,434,3,jOVENES,ACCIÓN ,43,54,44SDFA,
+PA212,DOCTOR STRANGE,2,4,Jovenes,accion,,,,
+SD323,how i MEET Y,434,3,jOVENES,ACCIï¿½N ,43,54,44SDFA,
+DD432,til_docu,434,5,joven,comedia,43,3,fast food,comida
+SC323,til_serie,443,3,niï¿½os,comedia,4,32,bob toronja,
+SD323,til_serie,32,3,niï¿½os,comedia,32,3,bob,
+DD323,til_docu,32,3,yo,comedia,2,3,toronjas,toronjas asesinas
+DC323,TIL_COUMENTA,32,2,SEï¿½ORES,ACCION,23,32,RICARDIN,RICARDIN JUEGA CON LA PIA
+DA323,lA ABEJAS,100,4,TODS,INFORMATIVO,2,55,LAS ABEJAS _,LAS ABEJAS TAMBIEN HACEN POPO
