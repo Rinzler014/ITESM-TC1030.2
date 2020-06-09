@@ -98,28 +98,25 @@ class Validaciones():
                 return string 
             return string 
  
-    def validar_numero(self, integer_): 
+    def validar_numero(self): 
  
         #Si se usa este metodo usar la siguiente nomenclatura: 
         #nombre_objeto=PideValor(limite_inferior,limite_superior,tipo(solo "int", de lo contrario dejar en blanco)) 
         #nombre_objeto.validar_numero 
- 
-        while 1:   
- 
-            integer = int(integer_ )
-            if integer<self.lim_in or integer>self.lim_sup: 
-                print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)") 
-                integer = int(input("-->")) 
-                while 1: 
-                    if integer<self.lim_in or integer>self.lim_sup: 
-                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)") 
-                        integer = int(input("-->")) 
-                    else: 
-                        return integer 
-            else: 
-                return integer 
-            return integer 
 
+        while 1: 
+            integer = input("-->")
+            try:
+                while 1:
+                    integer = int(integer)
+                    if integer<self.lim_in or integer>self.lim_sup: 
+                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)")
+                        break
+                    else:
+                        return integer
+            except ValueError:
+                print("El valor contiene caracteres no validos (INVLAx002)")
+ 
     def validacion_del_id(self, usuario_id):
 
         while 1:
@@ -231,7 +228,6 @@ class CSV():
 
 class PideValor():
 
-
     def tomar_datos(self):
         while 1:
 
@@ -249,27 +245,29 @@ class PideValor():
             if id_completo[0] == "P":
                 for i in range(1,6):
                     print(datos_contenido[i])
-                    x=input("->")
                     
                     if i==1:
                         #Titulo
                         validar=Validaciones(30,1)
+                        x=input("->")
                         x=validar.validar_string(x)
                     elif i==2:
                         #Duracion
                         validar=Validaciones(500,1)
-                        x=str(validar.validar_numero(int(x)))
+                        x=str(validar.validar_numero())
                     elif i==3:
                         #Calificacion
                         validar=Validaciones(5,1)
-                        x=str(validar.validar_numero(int(x)))
+                        x=str(validar.validar_numero())
                     elif i==4:
                         #Audiencia
                         validar=Validaciones(15,1)
+                        x=input("->")
                         x=validar.validar_string(x)
                     elif i==5:
                         #Genero
                         validar=Validaciones(15,1)
+                        x=input("->")
                         x=validar.validar_string(x)
 
                     datos.append(","+x)
@@ -289,11 +287,11 @@ class PideValor():
                     elif i==2:
                         #Duracion
                         validar=Validaciones(500,1)
-                        x=str(validar.validar_numero(int(x)))
+                        x=str(validar.validar_numero())
                     elif i==3:
                         #Calificacion
                         validar=Validaciones(5,1)
-                        x=str(validar.validar_numero(int(x)))
+                        x=str(validar.validar_numero())
                     elif i==4:
                         #Audiencia
                         validar=Validaciones(15,1)
@@ -305,19 +303,15 @@ class PideValor():
                     elif i==6:
                         #temporada
                         validar=Validaciones(500,1)
-                        x=str(validar.validar_string(int(x)))
+                        x=str(validar.validar_numero())
                     elif i==7:
                         #Episodio
                         validar=Validaciones(500,1)
-                        x=str(validar.validar_string(int(x)))
-                    
+                        x=str(validar.validar_numero())
                     elif i==8:
                         #til_episo
                         validar=Validaciones(30,1)
                         x=validar.validar_string(x)
-
-
-
 
                     datos.append(","+x)
 
@@ -338,11 +332,11 @@ class PideValor():
                     elif i==2:
                         #Duracion
                         validar=Validaciones(500,1)
-                        x=str(validar.validar_numero(x))
+                        x=str(validar.validar_numero())
                     elif i==3:
                         #Calificacion
                         validar=Validaciones(5,1)
-                        x=str(validar.validar_numero(x))
+                        x=str(validar.validar_numero())
                     elif i==4:
                         #Audiencia
                         validar=Validaciones(15,1)
@@ -354,14 +348,14 @@ class PideValor():
                     elif i==6:
                         #temporada
                         validar=Validaciones(500,1)
-                        x=str(validar.validar_string(int(x)))
+                        x=str(validar.validar_numero())
                     elif i==7:
                         #Episodio
                         validar=Validaciones(500,1)
-                        x=str(validar.validar_string(int(x)))
+                        x=str(validar.validar_numero())
                     
                     elif i==8:
-                        #til_tema
+                        #tit_episodio
                         validar=Validaciones(30,1)
                         x=validar.validar_string(x)
                     elif i==9:
@@ -602,7 +596,7 @@ class Consultas():
             for key in general_dic.keys():
                 for key_2 in general_dic[key].keys():
                     for valor in general_dic[key][key_2].values():
-                        if valor.genero == genre_search:
+                        if valor.Genero == genre_search:
                             valor.muestra_datos()
             
             print("\nDesea buscar otro genero?")
@@ -615,15 +609,3 @@ class Consultas():
                 pass
             if option == 2:
                 break
-            
-
-
-
-       
-
-       
-
-
-
-
- 
