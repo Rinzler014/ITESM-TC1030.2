@@ -1,7 +1,8 @@
 
 #----IMPORTS---
 
-from Pide_valor import *
+from Pide_valor import CSV,Validaciones,Archivadora,Consultas,Videos,Peliculas,Mostrar_listas,PideValor 
+
 
 #----CLASES----
 
