@@ -85,11 +85,11 @@ class Validaciones():
  
         while 1: 
             string = str(str_) 
-            if len(string)<self.lim_in or len(string)>self.lim_sup: 
+            if len(string)<=self.lim_in or len(string)>=self.lim_sup: 
                 print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)") 
                 string=input("->") 
                 while 1: 
-                    if len(string)<self.lim_in or len(string)>self.lim_sup: 
+                    if len(string)<=self.lim_in or len(string)>=self.lim_sup: 
                         print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)") 
                         string=input("->") 
                     else: 
@@ -236,7 +236,7 @@ class PideValor():
             datos = []
             print(datos_contenido[0])
             id_usuario=str(input("->"))
-            val_id=Validaciones(5,4)
+            val_id=Validaciones(6,4)
             id_usuario=val_id.validar_string(id_usuario)
             id_completo = val_id.validacion_del_id(id_usuario)
             id_completo=id_completo.upper()
@@ -474,65 +474,41 @@ class Archivadora():
             #documental=
 
 class Mostrar_listas():
-    def __init__ (self):
-        pass
-    def lista_general(self):
+
+    def lista_general(self,op,busquedas):
+        if op==1: 
+      
+            for key in  general_dic.keys():
+                for key_2da in general_dic[key].keys():
+                    for valor in general_dic[key][key_2da].values():
+                        if busquedas== key_2da:
+                            valor.muestra_datos()
+                            print("\n")
+                        
+                            time.sleep(1)
+                pass
+        elif op==2:
+            for key in  general_dic.keys():
+                for key_2da in general_dic[key].keys():
+                    for valor in general_dic[key][key_2da].values():
+                        valor.muestra_datos()
+                        print("\n")
+                        time.sleep(1)
+
+        
     
-        for key in  general_dic.keys():
-            for key_2da in general_dic[key].keys():
-                for valor in general_dic[key][key_2da].values():
-                    valor.muestra_datos()
-                    print("\n")
-                    
-                time.sleep(1)
-        pass
-    def lista_series(self):
-        for key in  general_dic.keys():
-            for key_2da in general_dic[key].keys():
-
-                if key_2da == "S":
+        
+        elif op==8:
+            limite_inf_cal,limite_superior_cal=PideValor().tomar_limites_()
+            for key in  general_dic.keys():
+                for key_2da in general_dic[key].keys():
                     for valor in general_dic[key][key_2da].values():
-                        valor.muestra_datos()
-                        print("\n")
+                        if int(valor.Calificacion) >=limite_inf_cal and int(valor.Calificacion)<= limite_superior_cal: 
 
+                            valor.muestra_datos()
+                            print("\n")
                 
-            time.sleep(1)
-        
-    def listado_documentales(self):
-        for key in  general_dic.keys():
-            for key_2da in general_dic[key].keys():
-
-                if key_2da == "D":
-                    for valor in general_dic[key][key_2da].values():
-                        valor.muestra_datos()
-                        print("\n")
-                else:
-                    pass
-            time.sleep(1)
-
-        
-    def lista_peliculas(self):
-        for key in  general_dic.keys():
-            for key_2da in general_dic[key].keys():
-
-                if key_2da == "P":
-                    for valor in general_dic[key][key_2da].values():
-                        valor.muestra_datos()
-                        print("\n")
-            time.sleep(1)
-
-
-    def listado_por_calificación(self,limite_inf_cal,limite_superior_cal):
-        for key in  general_dic.keys():
-            for key_2da in general_dic[key].keys():
-                for valor in general_dic[key][key_2da].values():
-                    if int(valor.Calificacion) >=limite_inf_cal and int(valor.Calificacion)<= limite_superior_cal: 
-
-                        valor.muestra_datos()
-                        print("\n")
-                    
-                    
-                time.sleep(1)
+                            time.sleep(1.2)
   
 class Consultas():
 

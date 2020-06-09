@@ -88,30 +88,29 @@ class Eleccion():
             elif option == 5:
                 op_5=Archivadora()
                 op_5.archivadora_general(archive_)
-                Mostrar_listas().lista_general()
+                Mostrar_listas().lista_general(2,"")
 
 
             elif option == 6:
                 op_5=Archivadora()
                 op_5.archivadora_general(archive_)
-                Mostrar_listas().lista_peliculas()
+                Mostrar_listas().lista_general(1,"P")
                 pass
 
             elif option == 7:
                 op_5=Archivadora()
                 op_5.archivadora_general(archive_)
-                Mostrar_listas().lista_series()
+                Mostrar_listas().lista_general(1,"S")
 
             elif option == 8:
                 op_5=Archivadora()
                 op_5.archivadora_general(archive_)
-                Mostrar_listas().listado_documentales()
+                Mostrar_listas().lista_general(1,"D")
 
             elif option == 9:
                 op_5=Archivadora()
                 op_5.archivadora_general(archive_)
-                inferio,superior=PideValor().tomar_limites_()
-                Mostrar_listas().listado_por_calificación(inferio,superior)
+                Mostrar_listas().lista_general(8,"")
 
             elif option ==10:
                 print("EXIT REQUESTED BY USER...//")
