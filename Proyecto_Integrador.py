@@ -1,7 +1,7 @@
 
 #----IMPORTS---
 
-from Pide_valor import CSV,Validaciones,Archivadora,Consultas,Videos,Peliculas,Mostrar_listas,PideValor 
+from Pide_valor import CSV,Validaciones,Archivadora,Consultas,Videos,Peliculas,Mostrar_listas,Valores_usuario 
 
 
 #----CLASES----
@@ -63,7 +63,9 @@ class Eleccion():
             if option == 1:
                 archive = CSV()
                 _datos_lec = archive.leer(archive_)
-                objeto=PideValor()
+                op_5=Archivadora()
+                op_5.archivadora_general(archive_)
+                objeto=Valores_usuario()
                 x=objeto.menu_op1()
                 escritura=CSV()
                 escritura.escribir(_datos_lec,x)

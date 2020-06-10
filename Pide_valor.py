@@ -232,7 +232,6 @@ class CSV():
         _file_.close()
     
     def buscar(self, id_):
-
         for key in general_dic.keys():
             for key_2 in general_dic[key].keys():
                 for valor in general_dic[key][key_2].values():
@@ -291,7 +290,7 @@ class Pide_Valor():
                             oe.error()
                             del oe
                         else : return numero
-class PideValor():
+class Valores_usuario():
     def menu_op1(self):
 
         while True:
@@ -452,7 +451,7 @@ class Mostrar_listas():
                         time.sleep(1)
 
         elif op==8:
-            limite_inf_cal,limite_superior_cal=PideValor().tomar_limites_()
+            limite_inf_cal,limite_superior_cal=Valores_usuario().tomar_limites_()
             for key in  general_dic.keys():
                 for key_2da in general_dic[key].keys():
                     for valor in general_dic[key][key_2da].values():
@@ -467,7 +466,7 @@ class Mostrar_listas():
 
             while True:
 
-                request = PideValor()
+                request = Valores_usuario()
                 request = request.tomar_titulo()
 
                 for key in general_dic.keys():
@@ -492,7 +491,7 @@ class Mostrar_listas():
 
             while True:
 
-                request = PideValor()
+                request = Valores_usuario()
                 request = request.tomar_genero()
 
                 for key in general_dic.keys():
@@ -519,7 +518,7 @@ class Consultas():
 
         while True:
        
-            identifier = PideValor()
+            identifier = Valores_usuario()
             id_name = identifier.tomar_id()
             
             for key in general_dic.keys():
