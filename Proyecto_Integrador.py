@@ -77,12 +77,12 @@ class Eleccion():
             elif option == 3:
                 op_3 = Archivadora()
                 op_3.archivadora_general(archive_)
-                Consultas().consulta_por_titulo()
+                Mostrar_listas().lista_general(3,"")
 
             elif option == 4:
                 op_4 = Archivadora()
                 op_4.archivadora_general(archive_) 
-                Consultas().consulta_por_genero()
+                Mostrar_listas().lista_general(4,"")
 
             elif option == 5:
                 op_5=Archivadora()

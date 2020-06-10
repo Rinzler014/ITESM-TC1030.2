@@ -135,7 +135,6 @@ class Validaciones():
                 return string 
             return string 
  
-
     def validacion_del_id(self, usuario_id):
 
         while 1:
@@ -148,12 +147,11 @@ class Validaciones():
             elif id_contenido == "D":
                 break
             else:
-                print("No se pudo determinar el tipo de contenido\n Ingrese nuevamente el ID recuerde que el primer caracter debe ser P, D O S  ")
+                print("No se pudo determinar el tipo de contenido\n Ingrese nuevamente el ID recuerde que el primer caracter debe ser P, D o S: ")
                 while 1:
 
-                    validar_id=str(input())
-                    validar__id=Validaciones(5,4)
-                    validar_id=validar__id.validar_string(validar_id)
+                    validar__id=Pide_Valor("Cual es el ID: ",5,5,ciclo="si")
+                    validar_id=validar__id.pide_cadena()
                     id_contenido=validar_id.upper()
                     id_contenido=id_contenido[0]
                     if id_contenido == "P" or id_contenido == "S":
@@ -285,11 +283,9 @@ class Pide_Valor():
                         else : return numero
 class PideValor():
     def menu_op1(self):
-        print("¿Cual es el id?")
-        id_usuario=str(input("->"))
-        val_id=Validaciones(5,5)
-        id_usuario=val_id.validar_string(id_usuario)
-        id_completo = val_id.validacion_del_id(id_usuario)
+        val_id=Pide_Valor("¿Cual es el ID?",4,5,ciclo="si")
+        id_usuario=val_id.pide_cadena()
+        id_completo = Validaciones().validacion_del_id(id_usuario)
         id_completo=id_completo.upper()
         
         if id_completo[0] == "P":
@@ -420,15 +416,13 @@ class Archivadora():
 class Mostrar_listas():
 
     def lista_general(self,op,busquedas):
-        if op==1: 
-      
+        if op==1:
             for key in  general_dic.keys():
                 for key_2da in general_dic[key].keys():
                     for valor in general_dic[key][key_2da].values():
-                        if busquedas== key_2da:
+                        if busquedas == key_2da:
                             valor.muestra_datos()
                             print("\n")
-                        
                             time.sleep(1)
                 pass
         elif op==2:
@@ -439,9 +433,6 @@ class Mostrar_listas():
                         print("\n")
                         time.sleep(1)
 
-        
-    
-        
         elif op==8:
             limite_inf_cal,limite_superior_cal=PideValor().tomar_limites_()
             for key in  general_dic.keys():
@@ -453,6 +444,56 @@ class Mostrar_listas():
                             print("\n")
                 
                             time.sleep(1.2)
+        
+        elif op == 3:
+
+            while True:
+
+                request = PideValor()
+                request = request.tomar_titulo()
+
+                for key in general_dic.keys():
+                    for key_2 in general_dic[key].keys():
+                        for valor in general_dic[key][key_2].values():
+                            if self.Titulo == request:
+                                valor.muestra_datos()
+                                print("\n")
+                
+                print("\nDesea buscar otro titulo?")
+                print("1. Si")
+                print("2. Regresar al menú principal")
+                option = Validaciones("","","",2)
+                option = option.validar_opcion_menu()
+
+                if option == 1:
+                    pass
+                if option == 2:
+                    break
+
+        elif op == 4:
+
+            while True:
+
+                request = PideValor()
+                request = request.tomar_genero()
+
+                for key in general_dic.keys():
+                    for key_2 in general_dic[key].keys():
+                        for valor in general_dic[key][key_2].values():
+                            if self.Genero == request:
+                                valor.muestra_datos()
+                                print("\n")
+                                
+                print("\nDesea buscar otro genero?")
+                print("1. Si")
+                print("2. Regresar al menú principal")
+                option = Validaciones("","","",2)
+                option = option.validar_opcion_menu()
+
+                if option == 1:
+                    pass
+                if option == 2:
+                    break
   
 class Consultas():
 
@@ -470,56 +511,6 @@ class Consultas():
                             valor.muestra_datos()
 
             print("\nDesea buscar otro ID?")
-            print("1. Si")
-            print("2. Regresar al menú principal")
-            option = Validaciones("","","",2)
-            option = option.validar_opcion_menu()
-
-            if option == 1:
-                pass
-            if option == 2:
-                break
-            
-    def consulta_por_titulo(self):
-        
-        while True:
-
-            title = PideValor()
-            title_name = title.tomar_titulo()
-
-            for key in general_dic.keys():
-                for key_2 in general_dic[key].keys():
-                    for valor in general_dic[key][key_2].values():
-                        if valor.Titulo == title_name:
-                            valor.muestra_datos()
-                            print("\n")
-                            
-            
-            print("\nDesea buscar otro titulo?")
-            print("1. Si")
-            print("2. Regresar al menú principal")
-            option = Validaciones("","","",2)
-            option = option.validar_opcion_menu()
-
-            if option == 1:
-                pass
-            if option == 2:
-                break
-    
-    def consulta_por_genero(self):
-
-        while True:
-
-            genre = PideValor()
-            genre_search = genre.tomar_genero()
-
-            for key in general_dic.keys():
-                for key_2 in general_dic[key].keys():
-                    for valor in general_dic[key][key_2].values():
-                        if valor.Genero == genre_search:
-                            valor.muestra_datos()
-            
-            print("\nDesea buscar otro genero?")
             print("1. Si")
             print("2. Regresar al menú principal")
             option = Validaciones("","","",2)

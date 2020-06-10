@@ -1,4 +1,4 @@
-ID,Titulo,Duración,Calificación,Audiencia,Genero,Temporada,Episodio,Titulo del episodio,Tema
+ID,Titulo,Duraciï¿½n,Calificaciï¿½n,Audiencia,Genero,Temporada,Episodio,Titulo del episodio,Tema
 SA023,The office,323,4,J. Adultos,Comedia ,9,3,locos,
 PC320,La cosa,100,5,Jovenes,Suspenso,,,,
 DA032,Muerte,42,2,Adultos,suspenso,3,2,Yo,no
@@ -13,3 +13,4 @@ SD323,til_serie,32,3,niï¿½os,comedia,32,3,bob,
 DD323,til_docu,32,3,yo,comedia,2,3,toronjas,toronjas asesinas
 DC323,TIL_COUMENTA,32,2,SEï¿½ORES,ACCION,23,32,RICARDIN,RICARDIN JUEGA CON LA PIA
 DA323,lA ABEJAS,100,4,TODS,INFORMATIVO,2,55,LAS ABEJAS _,LAS ABEJAS TAMBIEN HACEN POPO
+PA058,Spider Man 2,180,5,Todo Publico,Accion,,,,
