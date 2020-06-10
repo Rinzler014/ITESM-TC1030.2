@@ -230,6 +230,16 @@ class CSV():
         for i in range (len (file_list)):
             _file_.write(file_list[i])
         _file_.close()
+    
+    def buscar(self, id_):
+
+        for key in general_dic.keys():
+            for key_2 in general_dic[key].keys():
+                for valor in general_dic[key][key_2].values():
+                    if valor.ID == id_ :
+                        return "Duplicate"
+                    else:
+                        return "Single"
 
 class Pide_Valor():
     def __init__(self, letrero, li=0, ls=0, ciclo="no", tipo="float"):
@@ -283,10 +293,18 @@ class Pide_Valor():
                         else : return numero
 class PideValor():
     def menu_op1(self):
-        val_id=Pide_Valor("¿Cual es el ID?",4,5,ciclo="si")
-        id_usuario=val_id.pide_cadena()
-        id_completo = Validaciones().validacion_del_id(id_usuario)
-        id_completo=id_completo.upper()
+
+        while True:
+            val_id=Pide_Valor("¿Cual es el ID?",4,5,ciclo="si")
+            id_usuario=val_id.pide_cadena()
+            id_completo = Validaciones().validacion_del_id(id_usuario)
+            id_completo=id_completo.upper()
+            search = CSV()
+            searched = search.buscar(id_completo)
+            if searched == "Duplicate":
+                print("El ID ingresado esta duplicado, intentelo de nuevo")
+            else:
+                break
         
         if id_completo[0] == "P":
             peili= Peliculas(id_completo)
@@ -455,7 +473,7 @@ class Mostrar_listas():
                 for key in general_dic.keys():
                     for key_2 in general_dic[key].keys():
                         for valor in general_dic[key][key_2].values():
-                            if self.Titulo == request:
+                            if valor.Titulo == request:
                                 valor.muestra_datos()
                                 print("\n")
                 
@@ -480,7 +498,7 @@ class Mostrar_listas():
                 for key in general_dic.keys():
                     for key_2 in general_dic[key].keys():
                         for valor in general_dic[key][key_2].values():
-                            if self.Genero == request:
+                            if valor.Genero == request:
                                 valor.muestra_datos()
                                 print("\n")
                                 
@@ -509,6 +527,7 @@ class Consultas():
                     for valor in general_dic[key][key_2].values():
                         if valor.ID == id_name :
                             valor.muestra_datos()
+            else: print("No se encontro el ID solicitado")
 
             print("\nDesea buscar otro ID?")
             print("1. Si")
