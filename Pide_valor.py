@@ -116,24 +116,7 @@ class Validaciones():
             except ValueError:
                 print("La opcion seleccionada no es un numero (ERRx001)")
 
-    def validar_string(self,str_): 
-            #Si se usa este metodo usar la siguiente nomenclatura: 
-            #nombre_objeto=PideValor(limite_inferior,limite_superior) 
-           
-        while 1: 
-            string = str(str_) 
-            if len(string)<self.lim_in or len(string)>self.lim_sup: 
-                print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)") 
-                string=input("->") 
-                while 1: 
-                    if len(string)<self.lim_in or len(string)>self.lim_sup: 
-                        print("La cadena debe estar entre "+str(self.lim_in)+" y "+str(self.lim_sup)+" caracteres (INVALx001)") 
-                        string=input("->") 
-                    else: 
-                        return string  
-            else: 
-                return string 
-            return string 
+
  
     def validacion_del_id(self, usuario_id):
 
@@ -181,7 +164,7 @@ class Validaciones():
                 while 1:
                     #Validacion de la clasificación
                 
-                    clasif_contenido =input("Rescribe el segundo caracter de tu ID, Recuerda que sebeestar entrea A, B, C O D\n ->")
+                    clasif_contenido =input("Rescribe el segundo caracter de tu ID, Recuerda que debe de estar entre A, B, C O D\n ->")
                     clasif_contenido= clasif_contenido.upper()
                     if clasif_contenido == "A" or clasif_contenido == "B":
                         validar_id=validar_id[0:1]+clasif_contenido+validar_id[2:5]
@@ -192,8 +175,16 @@ class Validaciones():
                     else:
                         print("No se pudo determinar la clasificacion del contenido\n")
                 break
-
-   
+        while 1:
+            validar_nuid=validar_id[2:5]
+            if not validar_nuid.isnumeric():
+                print("La cadena contiene caracteres invalidos:  ")
+                numerid_id=Pide_Valor("Debe de ingresar los ultimos tres digitos de su ID, recuerde que estos deben ser Numericos: ",li=100,ls=999,ciclo="si",tipo="int")
+                numer_id=numerid_id.pide_numero()
+                validar_id=validar_id[0:1]+str(numer_id)
+                break
+            else:
+                break
 
         return validar_id
 
@@ -295,7 +286,7 @@ class Valores_usuario():
     def menu_op1(self):
 
         while True:
-            val_id=Pide_Valor("¿Cual es el ID?",4,5,ciclo="si")
+            val_id=Pide_Valor("¿Cual es el ID?",5,5,ciclo="si")
             id_usuario=val_id.pide_cadena()
             id_completo = Validaciones().validacion_del_id(id_usuario)
             id_completo=id_completo.upper()
