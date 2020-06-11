@@ -1,6 +1,7 @@
 
 import csv
 import time 
+from Proyecto_Integrador import Menu
 
 class Videos():
     def __init__(self,ID="",Titulo="",Duracion=0,Calificacion=0):
@@ -236,9 +237,7 @@ class CSV():
             for key_2 in general_dic[key].keys():
                 for valor in general_dic[key][key_2].values():
                     if valor.ID == id_ :
-                        return "Duplicate"
-                    else:
-                        return "Single"
+                        return "X"
 
 class Pide_Valor():
     def __init__(self, letrero, li=0, ls=0, ciclo="no", tipo="float"):
@@ -300,7 +299,7 @@ class Valores_usuario():
             id_completo=id_completo.upper()
             search = CSV()
             searched = search.buscar(id_completo)
-            if searched == "Duplicate":
+            if searched == "X":
                 print("El ID ingresado esta duplicado, intentelo de nuevo")
             else:
                 break
@@ -476,9 +475,8 @@ class Mostrar_listas():
                                 valor.muestra_datos()
                                 print("\n")
                 
-                print("\nDesea buscar otro titulo?")
-                print("1. Si")
-                print("2. Regresar al menú principal")
+                mini_menu = Menu()
+                mini_menu.mini_menu("titulo")
                 option = Validaciones("","","",2)
                 option = option.validar_opcion_menu()
 
@@ -501,9 +499,8 @@ class Mostrar_listas():
                                 valor.muestra_datos()
                                 print("\n")
                                 
-                print("\nDesea buscar otro genero?")
-                print("1. Si")
-                print("2. Regresar al menú principal")
+                mini_menu = Menu()
+                mini_menu.mini_menu("genero")
                 option = Validaciones("","","",2)
                 option = option.validar_opcion_menu()
 
@@ -520,17 +517,23 @@ class Consultas():
        
             identifier = Valores_usuario()
             id_name = identifier.tomar_id()
-            
-            for key in general_dic.keys():
-                for key_2 in general_dic[key].keys():
-                    for valor in general_dic[key][key_2].values():
-                        if valor.ID == id_name :
-                            valor.muestra_datos()
-            else: print("No se encontro el ID solicitado")
+            search = CSV()
+            search = search.buscar(id_name)
+            if search == "X":
+                for key in general_dic.keys():
+                    for key_2 in general_dic[key].keys():
+                        for valor in general_dic[key][key_2].values():
+                            if valor.ID == id_name :
+                                print("-"*37)
+                                valor.muestra_datos()
+                                print("\n"+"-"*37)
+            else: 
+                print("-"*37)
+                print("No se encontro el ID solicitado")
+                print("-")
 
-            print("\nDesea buscar otro ID?")
-            print("1. Si")
-            print("2. Regresar al menú principal")
+            mini_menu = Menu()
+            mini_menu.mini_menu("ID")
             option = Validaciones("","","",2)
             option = option.validar_opcion_menu()
 

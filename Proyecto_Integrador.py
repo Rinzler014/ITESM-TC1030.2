@@ -37,6 +37,11 @@ class Menu():
         print("9. Listado por calificaciones")
         print("10. Salir")
         print("-"*32)
+    
+    def mini_menu(self,variable):
+        print("Desea buscar otro "+variable+"?")
+        print("1. Si")
+        print("2. Regresar al menú principal")
 
 class Eleccion():
     
@@ -116,4 +121,5 @@ class Eleccion():
             elif option ==10:
                 print("EXIT REQUESTED BY USER...//")
                 break
+
 
