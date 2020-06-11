@@ -25,7 +25,7 @@ class Videos():
 
 
     def muestra_datos(self):
-        print("El ID es: ", self.ID,"El titulo es: ",self.Titulo,"la duración es: ",self.Duracion,"La calificación es: ",self.Calificacion, end=" ")
+        print("El ID es: ", self.ID,"\nEl titulo es: ",self.Titulo,"la duración es: ",self.Duracion,"La calificación es: ",self.Calificacion, end=" ")
 
 class Peliculas (Videos):
     def __init__(self,ID="",Titulo="",Duracion=0,Calificacion=0,Audiencia="",Genero=""):
@@ -206,8 +206,6 @@ class CSV():
         _datos_lec=file_.readlines()
         _datos_lec.pop(0)
         file_.close()
-        
-            
         return _datos_lec
     
     
@@ -289,6 +287,7 @@ class Pide_Valor():
                             oe.error()
                             del oe
                         else : return numero
+
 class Valores_usuario():
     def menu_op1(self):
 
@@ -475,8 +474,9 @@ class Mostrar_listas():
                                 valor.muestra_datos()
                                 print("\n")
                 
-                mini_menu = Menu()
-                mini_menu.mini_menu("titulo")
+                print("Desea buscar otro titulo?")
+                print("1. Si")
+                print("2. Regresar al menú principal")
                 option = Validaciones("","","",2)
                 option = option.validar_opcion_menu()
 
@@ -499,8 +499,9 @@ class Mostrar_listas():
                                 valor.muestra_datos()
                                 print("\n")
                                 
-                mini_menu = Menu()
-                mini_menu.mini_menu("genero")
+                print("Desea buscar otro genero?")
+                print("1. Si")
+                print("2. Regresar al menú principal")
                 option = Validaciones("","","",2)
                 option = option.validar_opcion_menu()
 
@@ -532,8 +533,9 @@ class Consultas():
                 print("No se encontro el ID solicitado")
                 print("-")
 
-            mini_menu = Menu()
-            mini_menu.mini_menu("ID")
+            print("Desea buscar otro ID?")
+            print("1. Si")
+            print("2. Regresar al menú principal")
             option = Validaciones("","","",2)
             option = option.validar_opcion_menu()
 
@@ -541,3 +543,5 @@ class Consultas():
                 pass
             if option == 2:
                 break
+        
+    
