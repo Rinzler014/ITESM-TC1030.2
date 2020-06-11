@@ -1,14 +1,14 @@
 
 import csv
 import time 
-from Proyecto_Integrador import Menu
 
 class Videos():
     def __init__(self,ID="",Titulo="",Duracion=0,Calificacion=0):
         self.ID=ID
         self.Titulo=Titulo
         self.Duracion=Duracion
-        self.Calificacion=Calificacion      
+        self.Calificacion=Calificacion  
+
     def pide_datos(self):
         vi_li=[]
         v=Pide_Valor("Indica el titulo: ", ciclo="si",li=1,ls=30)
@@ -23,9 +23,8 @@ class Videos():
         vi_li.append(","+self.Calificacion)
         return vi_li
 
-
     def muestra_datos(self):
-        print("El ID es: ", self.ID,"\nEl titulo es: ",self.Titulo,"la duración es: ",self.Duracion,"La calificación es: ",self.Calificacion, end=" ")
+        print("El ID es: ", self.ID,"\nEl titulo es: ",self.Titulo,"\nla duración es: ",self.Duracion,"\nLa calificación es: ",self.Calificacion, end=" ")
 
 class Peliculas (Videos):
     def __init__(self,ID="",Titulo="",Duracion=0,Calificacion=0,Audiencia="",Genero=""):
@@ -35,9 +34,9 @@ class Peliculas (Videos):
      
     def pide_datos(self):
         pvi_li=super().pide_datos()
-        p=Pide_Valor("Indica el la audiencia: ", ciclo="si",li=1,ls=15)
+        p=Pide_Valor("Indica la audiencia: ", ciclo="si",li=1,ls=15)
         self.Audiencia=p.pide_cadena()
-        p=Pide_Valor("Indica la genero: ",ciclo="si",li=1,ls=15)
+        p=Pide_Valor("Indica el genero: ",ciclo="si",li=1,ls=15)
         self.Genero=p.pide_cadena()
        
         pvi_li.append(","+self.Audiencia)
@@ -46,7 +45,7 @@ class Peliculas (Videos):
         return pvi_li
     def muestra_datos(self):
         super().muestra_datos()
-        print("La audiencia para esta serie es: ",self.Audiencia,"La genero para esta serie es: ",self.Genero, end=" ")
+        print("\nLa audiencia para esta serie es: ",self.Audiencia,"\nLa genero para esta serie es: ",self.Genero, end=" ")
 
 class Serie (Peliculas):
     def __init__(self,ID="",Titulo="",Duracion=0,Calificacion=0,Audiencia="",Genero="",Temporada=0,Episodio=0,Til_episodio=""):
@@ -61,7 +60,7 @@ class Serie (Peliculas):
         
         s=Pide_Valor("¿Cual es la temporada?: ", tipo="int",ciclo="si",li=1,ls=500)
         self.Temporada=str(s.pide_numero())
-        s=Pide_Valor("Indica la episodio: ", tipo="int",ciclo="si",li=1,ls=500)
+        s=Pide_Valor("Indica numero de episodio: ", tipo="int",ciclo="si",li=1,ls=500)
         self.Episodio=str(s.pide_numero())
         s=Pide_Valor("Indica el titulo del episodio : ",ciclo="si",li=1,ls=30)
         self.Til_episodio=str(s.pide_cadena())
@@ -73,7 +72,7 @@ class Serie (Peliculas):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("La temporada es: ",self.Temporada,"El episodio es: ",self.Episodio,"El tilulo del episodio es: ",self.Til_episodio, end=" ")
+        print("\nLa temporada es: ",self.Temporada,"\nEl episodio es: ",self.Episodio,"\nEl tilulo del episodio es: ",self.Til_episodio, end=" ")
 
 class Documental (Serie):
     def __init__(self,ID,Titulo="",Duracion=0,Calificacion=0,Audiencia="",Genero="",Temporada=0,Episodio=0,Til_episodio="",Tema=""):
@@ -92,7 +91,7 @@ class Documental (Serie):
 
     def muestra_datos(self):
         super().muestra_datos()
-        print("El tema del documental es: ", self.Tema)
+        print("\nEl tema del documental es: ", self.Tema)
 
 class Validaciones():
 
@@ -437,9 +436,8 @@ class Mostrar_listas():
                     for valor in general_dic[key][key_2da].values():
                         if busquedas == key_2da:
                             valor.muestra_datos()
-                            print("\n")
                             time.sleep(1)
-                pass
+                            print("-"*32)
         elif op==2:
             for key in  general_dic.keys():
                 for key_2da in general_dic[key].keys():
