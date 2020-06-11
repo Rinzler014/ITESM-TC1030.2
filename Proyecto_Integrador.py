@@ -43,14 +43,15 @@ class Eleccion():
     def inicio_de_menu (self):
         menu=Menu()
         menu.pre_menu()
-        option = Validaciones("","","",2)
-        option = option.validar_opcion_menu()
+        option_pre = Validaciones("","","",2)
+        option_pre = option_pre.validar_opcion_menu()
 
-        if option == 1:
+        if option_pre == 1:
             archive_=str(input("Ingrese el nombre de su archivo: "))
 
-        elif option == 2:
+        elif option_pre == 2:
             archive = CSV()
+            archive_=archive.crear()
             
         while 1:
 
@@ -68,7 +69,7 @@ class Eleccion():
                 objeto=Valores_usuario()
                 x=objeto.menu_op1()
                 escritura=CSV()
-                escritura.escribir(_datos_lec,x)
+                escritura.escribir(_datos_lec,x,archive_,option_pre)
                 
            
             elif option == 2:

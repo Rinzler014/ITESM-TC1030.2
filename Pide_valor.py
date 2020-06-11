@@ -209,21 +209,25 @@ class CSV():
     
     
     def crear(self):
-        print("Indique el nombre de su csv")
-        name_file=str(input("->"))
-        file_=open(name_file+".csv","w+")
+        print("Se creo un CSV con el nombre videos")
+        name_file="Videos"
+        file_=open(name_file+".csv","w")
         file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
         file_.close()
-        file_list=[]
-        return file_list
+        
+        return name_file
         
 
-    def escribir(self,lectura,x): 
+    def escribir(self,lectura,x,name,op_pre): 
         file_=lectura
-        file_.append("\n")
+        
         x=x
+        if op_pre==1:
+            x[0]=str("\n"+x[0])
+        else :
+            pass
         file_list=file_+x
-        _file_=open("Prueba.csv","w+")
+        _file_=open(name+".csv","w+")
         _file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
         for i in range (len (file_list)):
             _file_.write(file_list[i])
@@ -471,6 +475,7 @@ class Mostrar_listas():
                             if valor.Titulo == request:
                                 valor.muestra_datos()
                                 print("\n")
+                                time.sleep(1.5)
                 
                 print("Desea buscar otro titulo?")
                 print("1. Si")
@@ -496,6 +501,8 @@ class Mostrar_listas():
                             if valor.Genero == request:
                                 valor.muestra_datos()
                                 print("\n")
+                                time.sleep(1.5)
+
                                 
                 print("Desea buscar otro genero?")
                 print("1. Si")
