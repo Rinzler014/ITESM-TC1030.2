@@ -215,8 +215,11 @@ class CSV():
         x=x
         if op_pre==1:
             x[0]=str("\n"+x[0])
-        else :
-            pass
+        elif op_pre==2 :
+            x.append("\n")
+
+
+        
         file_list=file_+x
         _file_=open(name+".csv","w+")
         _file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
