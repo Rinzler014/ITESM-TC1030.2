@@ -116,8 +116,6 @@ class Validaciones():
             except ValueError:
                 print("La opcion seleccionada no es un numero (ERRx001)")
 
-
- 
     def validacion_del_id(self, usuario_id):
 
         while 1:
@@ -130,7 +128,7 @@ class Validaciones():
             elif id_contenido == "D":
                 break
             else:
-                print("No se pudo determinar el tipo de contenido\n Ingrese nuevamente el ID recuerde que el primer caracter debe ser P, D o S: ")
+                print("No se pudo determinar el tipo de contenido\n Ingrese nuevamente el ID recuerde que el primer caracter debe ser P, S ó D: ")
                 while 1:
 
                     validar__id=Pide_Valor("Cual es el ID: ",5,5,ciclo="si")
@@ -142,7 +140,7 @@ class Validaciones():
                     elif id_contenido == "D":
                         break
                     else:
-                        print("No se pudo determinar el tipo de contenido\n Ingrese nuevamente el ID recuerde que ")
+                        print("No se pudo determinar el tipo de contenido\n Ingrese nuevamente el ID recuerde que el primer caracter debe ser P, S ó D")
                         pass
                 break
 
@@ -164,13 +162,13 @@ class Validaciones():
                 while 1:
                     #Validacion de la clasificación
                 
-                    clasif_contenido =input("Rescribe el segundo caracter de tu ID, Recuerda que debe de estar entre A, B, C O D\n ->")
+                    clasif_contenido =input("Rescribe el segundo caracter de tu ID, Recuerda que debe de estar entre A, B, C ó D\n ->")
                     clasif_contenido= clasif_contenido.upper()
                     if clasif_contenido == "A" or clasif_contenido == "B":
-                        validar_id=validar_id[0:1]+clasif_contenido+validar_id[2:5]
+                        validar_id=validar_id[0]+clasif_contenido+validar_id[2:5]
                         break
                     elif clasif_contenido == "C" or clasif_contenido == "D":
-                        validar_id=validar_id[0:1]+clasif_contenido+validar_id[2:5]
+                        validar_id=validar_id[0]+clasif_contenido+validar_id[2:5]
                         break
                     else:
                         print("No se pudo determinar la clasificacion del contenido\n")
@@ -178,10 +176,10 @@ class Validaciones():
         while 1:
             validar_nuid=validar_id[2:5]
             if not validar_nuid.isnumeric():
-                print("La cadena contiene caracteres invalidos:  ")
+                print("Detectado que los ultimos 3 valores del ID no son numericos:  ")
                 numerid_id=Pide_Valor("Debe de ingresar los ultimos tres digitos de su ID, recuerde que estos deben ser Numericos: ",li=100,ls=999,ciclo="si",tipo="int")
-                numer_id=numerid_id.pide_numero()
-                validar_id=validar_id[0:1]+str(numer_id)
+                numer_id=str(numerid_id.pide_numero())
+                validar_id=validar_id[0]+validar_id[1]+str(numer_id)
                 break
             else:
                 break
