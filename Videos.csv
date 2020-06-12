@@ -1,5 +1,7 @@
 ID,Titulo,Duración,Calificación,Audiencia,Genero,Temporada,Episodio,Titulo del episodio,Tema
-PB100,John Wick,114,5,Mayores de 18,Accion,,,,
-PB101,John Wick Chapter 2,119,5,Mayores de 18,Accion,,,,
-
-PC102,John Wick Parabellum,115,5,Mayores de 18,Accion,,,,
+PB100,John Wick,114,5,Adolescentes,Accion,,,,
+PB101,John Wick Chapter 2,115,5,Adolescentes,Accion,,,,
+PB102,John Wick Parabellum,116,5,Mayores de 18,Accion,,,,
+SB100,The Continental,45,5,Adolescentes,Accion,1,1,Epilogue,
+PB103,Avengers Endgame,121,4,Adolescnetes,Ciencia Ficcion,,,,
+PB104,Divergente,112,5,Adolescentes,Accion,,,,

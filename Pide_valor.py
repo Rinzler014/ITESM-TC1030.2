@@ -1,6 +1,15 @@
+#Instituto Tecnologico de Estudios Superiores de Monterrey
+#Ricardo Adolfo González Terán
+#A01769410
+#Anatanael Jesús Miranda Faustino
+#A01769232
+#Actvidad en este programa: Solicitudes de Valores al usuario
 
-import csv
+#----IMPORTS---
+
 import time 
+
+#----CLASES----
 
 class Videos():
     def __init__(self,ID="",Titulo="",Duracion=0,Calificacion=0):
@@ -198,7 +207,7 @@ class CSV():
     
     
     def crear(self):
-        print("Se creo un CSV con el nombre videos")
+        print("Se creo un CSV con el nombre \"videos\"")
         name_file="Videos"
         file_=open(name_file+".csv","w")
         file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
@@ -207,17 +216,12 @@ class CSV():
         return name_file
         
 
-    def escribir(self,lectura,x,name,op_pre): 
+    def escribir(self,lectura,x,name): 
         file_=lectura
         
         x=x
-        if op_pre==1:
-            x[0]=str("\n"+x[0])
-        elif op_pre==2 :
-            x.append("\n")
+        x.append("\n")
 
-
-        
         file_list=file_+x
         _file_=open(name+".csv","w+")
         _file_.write("ID"+",Titulo"+",Duración"+",Calificación"+",Audiencia"+",Genero"+",Temporada"+",Episodio"+",Titulo del episodio"+",Tema"+"\n")
@@ -431,15 +435,18 @@ class Mostrar_listas():
                 for key_2da in general_dic[key].keys():
                     for valor in general_dic[key][key_2da].values():
                         if busquedas == key_2da:
+                            print("-"*37)
                             valor.muestra_datos()
+                            print("\n"+"-"*37)
                             time.sleep(1)
-                            print("-"*32)
+                            
         elif op==2:
             for key in  general_dic.keys():
                 for key_2da in general_dic[key].keys():
                     for valor in general_dic[key][key_2da].values():
+                        print("-"*37)
                         valor.muestra_datos()
-                        print("\n")
+                        print("\n"+"-"*37)
                         time.sleep(1)
 
         elif op==8:
@@ -448,9 +455,10 @@ class Mostrar_listas():
                 for key_2da in general_dic[key].keys():
                     for valor in general_dic[key][key_2da].values():
                         if int(valor.Calificacion) >=limite_inf_cal and int(valor.Calificacion)<= limite_superior_cal: 
-
+                            
+                            print("-"*37)
                             valor.muestra_datos()
-                            print("\n")
+                            print("\n"+"-"*37)
                 
                             time.sleep(1.2)
         
@@ -464,9 +472,10 @@ class Mostrar_listas():
                 for key in general_dic.keys():
                     for key_2 in general_dic[key].keys():
                         for valor in general_dic[key][key_2].values():
-                            if valor.Titulo == request:
+                            if request in valor.Titulo:
+                                print("-"*37)
                                 valor.muestra_datos()
-                                print("\n")
+                                print("\n"+"-"*37)
                                 time.sleep(1.5)
                 
                 print("Desea buscar otro titulo?")
@@ -490,9 +499,10 @@ class Mostrar_listas():
                 for key in general_dic.keys():
                     for key_2 in general_dic[key].keys():
                         for valor in general_dic[key][key_2].values():
-                            if valor.Genero == request:
+                            if request in valor.Genero:
+                                print("-"*37)
                                 valor.muestra_datos()
-                                print("\n")
+                                print("\n"+"-"*37)
                                 time.sleep(1.5)
 
                                 
@@ -528,7 +538,7 @@ class Consultas():
             else: 
                 print("-"*37)
                 print("No se encontro el ID solicitado")
-                print("-")
+                print("-"*37)
 
             print("Desea buscar otro ID?")
             print("1. Si")

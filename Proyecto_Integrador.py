@@ -1,8 +1,13 @@
+#Instituto Tecnologico de Estudios Superiores de Monterrey
+#Ricardo Adolfo González Terán
+#A01769410
+#Anatanael Jesús Miranda Faustino
+#A01769232
+#Actvidad en este programa: Interacciones con el Usuario
 
 #----IMPORTS---
 
 from Pide_valor import CSV,Validaciones,Archivadora,Consultas,Videos,Peliculas,Mostrar_listas,Valores_usuario 
-
 
 #----CLASES----
 
@@ -69,7 +74,7 @@ class Eleccion():
                 objeto=Valores_usuario()
                 x=objeto.menu_op1()
                 escritura=CSV()
-                escritura.escribir(_datos_lec,x,archive_,option_pre)
+                escritura.escribir(_datos_lec,x,archive_)
                 
            
             elif option == 2:
